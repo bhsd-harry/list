@@ -142,9 +142,8 @@ function ifMaster(){
 }
 
 function generateRounds(r){
-/*
     let round=$("ddlRound");
-    for(let i=round.length;i>=0;i--){
+    for(let i=round.options.length;i>=0;i--){
 	round.remove(i);
     }
     switch(r){
@@ -154,11 +153,10 @@ function generateRounds(r){
 	    break;
 	case 4:
 	    for(let i=1;i<=5;i++){
-		round.options.add(new Option(`第${i}轮`,i);
+		round.options.add(new Option(`第${i}轮`,i));
 	    }
 	    break;
     }
-*/
 }
 
 function changeIfMaster(){
@@ -173,5 +171,17 @@ function changeIsFirst(){
     let ck=$("ckIsFirst");
     if(ck.disabled==false){
         ck.checked=!(ck.checked);
+    }
+}
+
+function adjustLow(){
+    if(getInt("txtLow")>getInt("txtHigh")){
+	$("txtLow").value=$$("txtHigh");
+    }
+}
+
+function adjustHigh(){
+    if(getInt("txtHigh")<getInt("txtLow")){
+        $("txtHigh").value=$$("txtLow");
     }
 }
