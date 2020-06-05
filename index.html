@@ -10,6 +10,7 @@
 	<table>
 	    <tr>
 		<td>
+		    <span>团体</span>
 		    <select id="ddlGroup" onchange="initialSongList()">
 			<option value=0>任意</option>
 			<option value=1>μ's</option>
@@ -17,6 +18,7 @@
 		    </select>
 		</td>
                 <td>
+		    <span>属性</span>
                     <select id="ddlCl" onchange="initialSongList()">
                         <option value="0">任意</option>
                         <option value="smile">Smile</option>
@@ -26,28 +28,55 @@
                 </td>
 		<td><select id="ddlSong"></select></td>
 		<td>
+		    <span>活动类型</span>
 		    <select id="ddlEvent">
 			<option value=0>散步拉力赛挑战歌曲</option>
 		    </select>
 		</td>
+	    </tr>
+	    <tr>
 		<td>
 		    <span>序号</span>
 		    <input type="text" id="txtOrder" value="1" />
 		</td>
+                <td>
+                    <span>最低难度</span>
+                    <input type="text" id="txtLow" value="1" />
+                </td>
+                <td>
+                    <span>最高难度</span>
+                    <input type="text" id="txtHigh" value="4" />
+                </td>
 		<td>
 		    <label for="ckIsFirst">
 			<input type="checkbox" id="ckIsFirst" />第一首该色歌曲
 		    </label>
-		<td>
-		    <input type="button" value="生成Wiki代码" id="btnCode" onclick="generateCode()"/>
 		</td>
+	    </tr>
+	    <tr>
+		<td>
+		    <span>轮次</span>
+                    <select id="ddlRound"></select>
+                </td>
+                <td>
+                    <label for="ckIsFirst">
+                        <input type="checkbox" id="ckIfMaster" />MASTER
+                    </label>
+                </td>
+                <td>
+                    <input type="button" value="生成Wiki代码" id="btnCode" onclick="generateCode()"/>
+                </td>
+                <td>
+                    <input type="button" value="下一首" id="btnNext" onclick="nextRow()"/>
+                </td>
 	    </tr>
 	</table>
     </div>
-    <div id="divOutput">
-	<table>
+    <div id="divOutput" style="padding:50px">
+	<a href="javascript:;" onclick="clearTable()">清空</a>
+	<table id="tbOutput">
 	    <tr>
-		<td><span id="spanOutput"></span></td>
+		<td></td>
 	    </tr>
 	</table>
     </div>
@@ -60,4 +89,7 @@
     "use strict";
     initialData();
     initialSongList();
+    initialDisabling();
+
+    var outputArr=[];
 </script>
