@@ -31,8 +31,8 @@
 		    <span>活动类型</span>
 		    <select id="ddlEvent" onchange="initialDisabling()">
 			<option value=0>散步拉力赛挑战歌曲</option>
-			<option value=1>SCORE MATCH（开发中）</option>
-			<option value=2>Medley Festival（开发中）</option>
+			<option value=1>SCORE MATCH</option>
+			<option value=2>Medley Festival</option>
 			<option value=3>友情大合战（开发中）</option>
 			<option value=4>Challenge Festival（开发中）</option>
 		    </select>
@@ -74,12 +74,13 @@
                 </td>
                 <td>
                     <input type="button" value="下一首" id="btnNext" onclick="nextRow()"/>
+		    <input type="button" value="结束" id="btnEnd" onclick="endList()"/>
                 </td>
 	    </tr>
 	</table>
     </div>
     <div id="divOutput" style="padding:50px">
-	<a href="javascript:;" onclick="clearTable()">清空</a>
+	<input type="button" value="清空" id="btnClear" onclick="clearTable()"/>
 	<table id="tbOutput">
 	    <tr></tr>
 	    <tr></tr>

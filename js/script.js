@@ -11,18 +11,18 @@ function initialDisabling(){
     switch($$("ddlEvent")){
 	case "0":
 	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
-	    $("ckIfMaster").checked=false;
-	    code=code.concat("as2|diff=easy,normal,hard,expert");
-	    break;
-	case "1":
-	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
-	    code=code.concat("sm|diff=easy,normal,hard,expert,technical");
-	    generateRounds(1);
+            $("ckIfMaster").checked=false;
+            code=code.concat("as2|diff=easy,normal,hard,expert");
 	    break;
 	case "2":
 	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
 	    $("ckIfMaster").checked=false;
 	    code=code.concat("mf|diff=easy,normal,hard,expert");
+	    break;
+	case "1":
+	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    code=code.concat("sm|diff=easy,normal,hard,expert,technical");
+	    generateRounds(1);
 	    break;
 	case "3":
 	    disabling("txtLow","txtHigh","ddlRound");
@@ -39,7 +39,7 @@ function initialDisabling(){
     }
 
 // 开发中
-    if(getInt("ddlEvent")>1){
+    if(getInt("ddlEvent")>2){
 	disabling("btnCode");
     }
     else{
@@ -79,6 +79,7 @@ function generateCode(){
     }
     switch($$("ddlEvent")){
 	case "0":
+	case "2":
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
 		code=code.concat(song.cl);
 	    }
@@ -153,6 +154,7 @@ function clearTable(){
     lastRound=undefined;
     $("txtOrder").value=1;
     $("ckIsFirst").checked=true;
+    $("ddlRound").selectedIndex=0;
 }
 
 function nextRow(){
@@ -226,4 +228,9 @@ function adjustHigh(){
 function adjustLvl(){
     $("txtLow").value=1;
     $("txtHigh").value=4+($("ckIfMaster").checked)+($$("ddlEvent")==1);
+}
+
+function endList(){
+    let tb=$("tbOutput");
+    tb.rows[tb.rows.length-1].innerHTML="}}";
 }
