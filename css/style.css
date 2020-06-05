@@ -21,3 +21,8 @@ select {
 input[type="button"] {
     font-size:20px;
 }
+
+input[type="text"] {
+    font-size:20px;
+    width:40px;
+}
