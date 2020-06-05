@@ -5,11 +5,16 @@ var lastCl=undefined;
 
 function initialDisabling(){
     disabling("btnNext");
+    let code="{{llsifsonglist|type=";
     switch($$("ddlEvent")){
 	case "0":
 	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    code=code.concat("as2|diff=easy,normal,hard,expert");
 	    break;
     }
+    clearTable();
+    let tb=$("tbOutput");
+    tb.rows[0].innerHTML=code;
 }
 function initialSongList(){
     let oldLength=$("ddlSong").length;
@@ -68,14 +73,15 @@ function generateCode(){
 function clearTable(){
     let tb=$("tbOutput");
     let len=tb.rows.length;
-    for(let i=len-1;i>0;i--){
+    for(let i=len-1;i>1;i--){
 	tb.deleteRow(i);
     }
-    tb.rows[0].innerHTML="";
+    tb.rows[1].innerHTML="";
     enabling("ckIsFirst","txtOrder");
     disabling("btnNext");
     lastCl=undefined;
     $("txtOrder").value=1;
+    $("ckIsFirst").checked=true;
 }
 
 function nextRow(){
@@ -84,4 +90,8 @@ function nextRow(){
     disabling("ckIsFirst","txtOrder","btnNext");
     lastCl=currCl;
     $("txtOrder").value=getInt("txtOrder")+1;
+}
+
+function ifMaster(){
+    $("txtHigh").value=5;
 }
