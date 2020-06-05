@@ -14,7 +14,8 @@ function initialDisabling(){
 	    break;
 	case "1":
 	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
-	    code=code.concat("sm|diff=easy,normal,hard,expert");
+	    code=code.concat("sm|diff=easy,normal,hard,expert,technical");
+	    $("txtHigh").value=5;
 	    generateRounds(1);
 	    break;
 	case "2":
@@ -48,6 +49,7 @@ function initialDisabling(){
     clearTable();
     if($("ckIfMaster").checked){
         code=code.concat(",master");
+	$("txtHigh").value=5+($$("ddlEvent")==1);
     }
     let tb=$("tbOutput");
     tb.rows[0].innerHTML=code;
@@ -132,11 +134,11 @@ function ifMaster(){
     let tb=$("tbOutput");
     let startRow=tb.rows[0];
     if($("ckIfMaster").checked){
-	$("txtHigh").value=5;
+	$("txtHigh").value=5+($$("ddlEvent")==1);
 	startRow.innerHTML=startRow.innerHTML.concat(",master");
     }
     else{
-	$("txtHigh").value=4;
+	$("txtHigh").value=4+($$("ddlEvent")==1);
 	startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
     }
 }
