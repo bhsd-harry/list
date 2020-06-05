@@ -1,7 +1,9 @@
 "use strict";
 
 var currCl="";
+var currRound="";
 var lastCl=undefined;
+var lastRound=undefined;
 
 function initialDisabling(){
     disabling("btnNext");
@@ -15,7 +17,6 @@ function initialDisabling(){
 	case "1":
 	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
 	    code=code.concat("sm|diff=easy,normal,hard,expert,technical");
-	    $("txtHigh").value=5;
 	    generateRounds(1);
 	    break;
 	case "2":
@@ -38,7 +39,7 @@ function initialDisabling(){
     }
 
 // 开发中
-    if(getInt("ddlEvent")>0){
+    if(getInt("ddlEvent")>1){
 	disabling("btnCode");
     }
     else{
@@ -47,9 +48,9 @@ function initialDisabling(){
 // 开发中
 
     clearTable();
+    adjustLvl();
     if($("ckIfMaster").checked){
         code=code.concat(",master");
-	$("txtHigh").value=5+($$("ddlEvent")==1);
     }
     let tb=$("tbOutput");
     tb.rows[0].innerHTML=code;
@@ -73,34 +74,65 @@ function generateCode(){
     let code='|';
     let addition='';
     currCl=song.cl.toLowerCase();
+    if($$("ddlEvent")==1 || $$("ddlEvent")==4){
+	currRound=$$("ddlRound");
+    }
     switch($$("ddlEvent")){
 	case "0":
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
-		code=code.concat(song.cl,'|');
-	    }
-	    else{
-		code=code.concat('|');
+		code=code.concat(song.cl);
 	    }
 	    if(song.cover){
 		if(song.cover.endsWith('.jpg')){
 		    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-		    code=code.concat(song.nm,'||||');
+		    code=code.concat('|',song.nm,'||||');
 		}
 		else{
-		    code=code.concat(song.cover,'|||',song.nm,'|');
+		    code=code.concat('|',song.cover,'|||',song.nm,'|');
 		}
 	    }
 	    else{
-		code=code.concat(song.nm,'||||');
+		code=code.concat('|',song.nm,'||||');
 	    }
 	    code=code.concat(song.exCombo,'|',song.mp3);
 	    if(song.lk){
-		code=code.concat('|lk',$$("txtOrder"),'=',song.lk,addition);
+		code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
 	    }
-	    else{
-		code=code.concat(addition);
-	    }
+	    code=code.concat(addition);
 	    break;
+	case "1":
+	    let whitespace='|';
+	    if(getInt("txtLow")>1){
+		whitespace=whitespace.concat(getInt("txtLow")-1);
+	    }
+	    whitespace=whitespace.concat('|');
+	    if(getInt("txtHigh")<5+$("ckIfMaster").checked){
+		whitespace=whitespace.concat($$("txtHigh"));
+	    }
+	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
+                code=code.concat(song.cl);
+            }
+            if(song.cover){
+                if(song.cover.endsWith('.jpg')){
+                    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
+                    code=code.concat('|',song.nm,whitespace,'||');
+                }
+                else{
+                    code=code.concat('|',song.cover,whitespace,'|',song.nm,'|');
+                }
+            }
+            else{
+                code=code.concat('|',song.nm,whitespace,'||');
+            }
+	    if(!lastRound || currRound!==lastRound){
+                code=code.concat(currRound);
+            }
+	    code=code.concat('|',song.mp3);
+	    if(song.lk){
+                code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
+            }
+            code=code.concat(addition);
+            break;
     }
     let tb=$("tbOutput");
     let lastRow=tb.rows[tb.rows.length-1];
@@ -118,6 +150,7 @@ function clearTable(){
     enabling("ckIsFirst","txtOrder");
     disabling("btnNext");
     lastCl=undefined;
+    lastRound=undefined;
     $("txtOrder").value=1;
     $("ckIsFirst").checked=true;
 }
@@ -127,6 +160,9 @@ function nextRow(){
     tb.insertRow(-1);
     disabling("ckIsFirst","txtOrder","btnNext");
     lastCl=currCl;
+    if($$("ddlEvent")==1 || $$("ddlEvent")==4){
+	lastRound=currRound;
+    }
     $("txtOrder").value=getInt("txtOrder")+1;
 }
 
@@ -134,13 +170,12 @@ function ifMaster(){
     let tb=$("tbOutput");
     let startRow=tb.rows[0];
     if($("ckIfMaster").checked){
-	$("txtHigh").value=5+($$("ddlEvent")==1);
 	startRow.innerHTML=startRow.innerHTML.concat(",master");
     }
     else{
-	$("txtHigh").value=4+($$("ddlEvent")==1);
 	startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
     }
+    adjustLvl();
 }
 
 function generateRounds(r){
@@ -186,4 +221,9 @@ function adjustHigh(){
     if(getInt("txtHigh")<getInt("txtLow")){
         $("txtHigh").value=$$("txtLow");
     }
+}
+
+function adjustLvl(){
+    $("txtLow").value=1;
+    $("txtHigh").value=4+($("ckIfMaster").checked)+($$("ddlEvent")==1);
 }
