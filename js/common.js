@@ -15,3 +15,6 @@ function disabling(){
         $(arguments[i]).disabled=true;
     }
 }
+function getInt(id){
+    return parseInt($$(id));
+}

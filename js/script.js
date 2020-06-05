@@ -69,15 +69,15 @@ function clearTable(){
 	tb.deleteRow(i);
     }
     tb.rows[0].innerHTML="";
-    enabling("ckIsFirst");
+    enabling("ckIsFirst","txtOrder");
     lastCl=undefined;
-//    $$("txtOrder")=1;
+    $("txtOrder").value=1;
 }
 
 function nextRow(){
     let tb=$("tbOutput");
     tb.insertRow(-1);
-    disabling("ckIsFirst");
+    disabling("ckIsFirst","txtOrder");
     lastCl=currCl;
-//    $$("txtOrder")=$$("txtOrder")+1;
+    $("txtOrder").value=getInt("txtOrder")+1;
 }
