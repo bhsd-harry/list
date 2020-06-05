@@ -10,42 +10,34 @@ function initialDisabling(){
     let code="{{llsifsonglist|type=";
     switch($$("ddlEvent")){
 	case "0":
-	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster","ddlComment");
             $("ckIfMaster").checked=false;
             code=code.concat("as2|diff=easy,normal,hard,expert");
 	    break;
 	case "2":
-	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster","ddlComment");
 	    $("ckIfMaster").checked=false;
 	    code=code.concat("mf|diff=easy,normal,hard,expert");
 	    break;
 	case "1":
 	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    disabling("ddlComment");
 	    code=code.concat("sm|diff=easy,normal,hard,expert,technical");
 	    generateRounds(1);
 	    break;
 	case "3":
-	    disabling("txtLow","txtHigh","ddlRound");
+	    disabling("txtLow","txtHigh","ddlRound","ddlComment");
 	    enabling("ckIfMaster");
 	    code=code.concat("cm|diff=easy,normal,hard,expert");
 	    break;
 	case "4":
 	    disabling("txtLow","txtHigh","ckIfMaster");
-	    enabling("ddlRound");
+	    enabling("ddlRound","ddlComment");
 	    $("ckIfMaster").checked=false;
 	    code=code.concat("cf");
 	    generateRounds(4);
 	    break;
     }
-
-// 开发中
-    if(getInt("ddlEvent")>3){
-	disabling("btnCode");
-    }
-    else{
-	enabling("btnCode");
-    }
-// 开发中
 
     clearTable();
     adjustLvl();
@@ -139,6 +131,44 @@ function generateCode(){
             }
             code=code.concat(addition);
             break;
+	case "4":
+	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
+                code=code.concat(song.cl);
+            }
+	    if(song.cover){
+                if(song.cover.endsWith('.jpg')){
+                    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
+                    code=code.concat('|',song.nm,'||');
+                }
+                else{
+                    code=code.concat('|',song.cover,'|',song.nm,'|');
+                }
+            }
+            else{
+                code=code.concat('|',song.nm,'||');
+            }
+	    if(song.daily){
+		code=code.concat("日替|");
+	    }
+	    else{
+		code=code.concat($$("ddlComment"),'|');
+	    }
+	    if(!song.daily && $$("ddlComment")=="随机"){
+		code=code.concat(song.exLevel2);
+	    }
+	    else{
+		code=code.concat(song.exLevel1);
+	    }
+	    code=code.concat('|',song.exCombo,'|');
+	    if(!lastRound || currRound!==lastRound){
+                code=code.concat(currRound);
+            }
+	    code=code.concat('|',song.mp3);
+            if(song.lk){
+                code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
+            }
+            code=code.concat(addition);
+	    break;
     }
     let tb=$("tbOutput");
     let lastRow=tb.rows[tb.rows.length-1];
@@ -160,6 +190,7 @@ function clearTable(){
     $("txtOrder").value=1;
     $("ckIsFirst").checked=true;
     $("ddlRound").selectedIndex=0;
+    $("ddlComment").selectedIndex=0;
 }
 
 function nextRow(){
@@ -256,4 +287,20 @@ function adjustLvl(){
 function endList(){
     let tb=$("tbOutput");
     tb.rows[tb.rows.length-1].innerHTML="}}";
+}
+
+function adjustRound(){
+    let round=$("ddlRound");
+    if(round.selectedIndex==round.length-1){
+	disabling("btnNextRound");
+    }
+    else{
+	enabling("btnNextRound");
+    }
+}
+
+function nextRound(){
+    let round=$("ddlRound");
+    round.selectedIndex=round.selectedIndex+1;
+    adjustRound();
 }

@@ -17,7 +17,7 @@ function initialData(){
 //    window.localStorage.setItem("songs",JSON.stringify(songs));
 }
 
-function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk){
+function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily){
     let model={
 	id:id,
 	cl:cl,
@@ -30,13 +30,14 @@ function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,m
 	maCombo:maCombo,
 	mp3:mp3,
 	lk:lk,
+	daily:daily,
 	group:1
     }
     songs[id]=model;
     id++;
 }
 
-function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk){
+function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily){
     let model={
 	id:id,
         cl:cl,
@@ -49,6 +50,7 @@ function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo
         maCombo:maCombo,
         mp3:mp3,
         lk:lk,
+	daily:daily,
         group:2
     }
     songs[id]=model;
@@ -163,16 +165,16 @@ function initSongPool(){
     initialSongMuse("pure","","純愛レンズ","10","11","550","12","815","m 069.mp3");
     initialSongMuse("cool","","輝夜の城で踊りたい","9","9","421","11","667","m 021.mp3");
     initialSongMuse("cool","LLBiBi4.jpg","錯覚CROSSROADS","9","9","500","11","707","m 097.mp3");
-    initialSongMuse("cool","Anemone heartsif","Anemone heart","11","","532","12","648","m 045.mp3");
-    initialSongMuse("cool","","Beat in Angel","11","","598","12","851","m 049.mp3");
-    initialSongMuse("smile","LLMFV2.jpg","Mermaid festa vol.2 ~Passionate~","11","","584","12","803","m 016.mp3");
-    initialSongMuse("cool","Soldier game cover.jpg","Soldier game","11","","563","12","696","m 019.mp3");
-    initialSongMuse("pure","","なわとび","9","","363","11","442","m 047.mp3");
-    initialSongMuse("smile","にこぷり♡女子道","にこぷり♥女子道","11","","650","12","1061","m 050.mp3");
-    initialSongMuse("pure","LLOtomeShikiCover.jpg","乙女式れんあい塾","11","","553","12","809","m 017.mp3");
-    initialSongMuse("pure","Jacket lovelive kokuhaku.jpg","告白日和、です！","11","","579","12","823","m 018.mp3");
-    initialSongMuse("smile","","夢なき夢は夢じゃない","11","","612","12","873","m 044.mp3");
-    initialSongMuse("pure","","硝子の花園","11","","609","12","993","m 051.mp3");
+    initialSongMuse("cool","Anemone heartsif","Anemone heart","11","","532","12","648","m 045.mp3","",true);
+    initialSongMuse("cool","","Beat in Angel","11","","598","12","851","m 049.mp3","",true);
+    initialSongMuse("smile","LLMFV2.jpg","Mermaid festa vol.2 ~Passionate~","11","","584","12","803","m 016.mp3","",true);
+    initialSongMuse("cool","Soldier game cover.jpg","Soldier game","11","","563","12","696","m 019.mp3","",true);
+    initialSongMuse("pure","","なわとび","9","","363","11","442","m 047.mp3","",true);
+    initialSongMuse("smile","にこぷり♡女子道","にこぷり♥女子道","11","","650","12","1061","m 050.mp3","",true);
+    initialSongMuse("pure","LLOtomeShikiCover.jpg","乙女式れんあい塾","11","","553","12","809","m 017.mp3","",true);
+    initialSongMuse("pure","Jacket lovelive kokuhaku.jpg","告白日和、です！","11","","579","12","823","m 018.mp3","",true);
+    initialSongMuse("smile","","夢なき夢は夢じゃない","11","","612","12","873","m 044.mp3","",true);
+    initialSongMuse("pure","","硝子の花園","11","","609","12","993","m 051.mp3","",true);
     initialSongAqours("pure","Amazing Travel DNA.jpg","Amazing Travel DNA","9","10","443","","","M 221.mp3");
     initialSongAqours("smile","","Aqours☆HEROES","10","10","515","11","686","m 096.mp3");
     initialSongAqours("pure","Cd22a","Awaken the power","10","10","522","12","748","m 170.mp3");
@@ -265,8 +267,9 @@ function initSongPool(){
     initialSongAqours("smile","Cd14a","近未来ハッピーエンド","9","10","576","12","900","m 152.mp3");
     initialSongAqours("smile","","逃走迷走メビウスループ","9","","497","11","695","M 205.ogg");
     initialSongAqours("smile","LACM-14500.jpg","青空Jumping Heart","10","10","471","12","681","m 119.mp3 ");
-    initialSongAqours("pure","","地元愛♡満タン☆サマーライフ","11","","698","","","m 158.mp3");
-    initialSongAqours("cool","","夏の終わりの雨音が","11","","656","","","m 159.mp3");
-    initialSongAqours("pure","","夏への扉 Never end ver.","11","","564","","","m 156.mp3");
-    initialSongAqours("smile","","真夏は誰のモノ？","11","","630","","","m 157.mp3");
+    initialSongAqours("pure","","地元愛♡満タン☆サマーライフ","11","","698","","","m 158.mp3","",true);
+    initialSongAqours("cool","","夏の終わりの雨音が","11","","656","","","m 159.mp3","",true);
+    initialSongAqours("pure","","夏への扉 Never end ver.","11","","564","","","m 156.mp3","",true);
+    initialSongAqours("smile","","真夏は誰のモノ？","11","","630","","","m 157.mp3",
+"",true);
 }

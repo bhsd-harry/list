@@ -7,7 +7,7 @@
 </head>
 <body>
     <div id="divInput">
-	<table>
+	<table class="tbInput">
 	    <tr>
 		<td>
 		    <span>团体</span>
@@ -34,17 +34,34 @@
 			<option value=1>SCORE MATCH</option>
 			<option value=2>Medley Festival</option>
 			<option value=3>友情大合战</option>
-			<option value=4>Challenge Festival（开发中）</option>
+			<option value=4>Challenge Festival</option>
 		    </select>
 		</td>
 	    </tr>
 	    <tr>
+                <td>
+                    <label for="ckIsFirst" id="lbIfMaster" onclick="changeIfMaster()">
+                        <input type="checkbox" id="ckIfMaster" onchange="ifMaster()"/>MASTER
+                    </label>
+                </td>
+                <td>
+                    <label for="ckIsFirst" id="lbIsFirst" onclick="changeIsFirst()">
+                        <input type="checkbox" id="ckIsFirst" checked=true />第一首该色歌曲
+                    </label>
+                </td>
 		<td>
 		    <span>序号</span>
 		    <input type="text" id="txtOrder" value="1" />
 		</td>
                 <td>
-                    <span>最低难度</span>
+		    <span>轮次</span>
+                    <select id="ddlRound" onchange="adjustRound()"></select>
+                    <input type="button" value="下一轮" id="btnNextRound" onclick="nextRound()"/>
+                </td>
+	    </tr>
+	    <tr>
+                <td>
+		    <span>最低难度</span>
                     <select id="txtLow" onchange="adjustLow()"/>
 			<option value=1>EASY</option>
 			<option value=2>NORMAL</option>
@@ -56,7 +73,7 @@
 		    <input type="button" value="还原" onclick="adjustLvl()"/>
                 </td>
                 <td>
-                    <span>最高难度</span>
+		    <span>最高难度</span>
                     <select id="txtHigh" selectedIndex=5 onchange="adjustHigh()"/>
                         <option value=1>EASY</option>
                         <option value=2>NORMAL</option>
@@ -68,33 +85,22 @@
 		    <input type="button" value="还原" onclick="adjustLvl()"/>
                 </td>
 		<td>
-		    <label for="ckIsFirst" id="lbIsFirst" onclick="changeIsFirst()">
-			<input type="checkbox" id="ckIsFirst" checked=true />第一首该色歌曲
-		    </label>
+		    <span>备注</span>
+		    <select id="ddlComment">
+			<option value="">无</option>
+			<option value="随机">随机</option>
+		    </select>
 		</td>
-	    </tr>
-	    <tr>
 		<td>
-		    <span>轮次</span>
-                    <select id="ddlRound"></select>
-                </td>
-                <td>
-                    <label for="ckIsFirst" id="lbIfMaster" onclick="changeIfMaster()">
-                        <input type="checkbox" id="ckIfMaster" onchange="ifMaster()"/>MASTER
-                    </label>
-                </td>
-                <td>
                     <input type="button" value="生成Wiki代码" id="btnCode" onclick="generateCode()"/>
-                </td>
-                <td>
                     <input type="button" value="下一首" id="btnNext" onclick="nextRow()"/>
-		    <input type="button" value="结束" id="btnEnd" onclick="endList()"/>
+                    <input type="button" value="结束" id="btnEnd" onclick="endList()"/>
                 </td>
 	    </tr>
 	</table>
     </div>
     <div id="divOutput" style="padding:50px">
-	<input type="button" value="清空" id="btnClear" onclick="clearTable()"/>
+	<input type="button" value="清空" id="btnClear" style="float:right" onclick="clearTable()"/>
 	<table id="tbOutput">
 	    <tr></tr>
 	    <tr></tr>
