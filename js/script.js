@@ -39,7 +39,7 @@ function initialDisabling(){
     }
 
 // 开发中
-    if(getInt("ddlEvent")>2){
+    if(getInt("ddlEvent")>3){
 	disabling("btnCode");
     }
     else{
@@ -80,6 +80,7 @@ function generateCode(){
     switch($$("ddlEvent")){
 	case "0":
 	case "2":
+	case "3":
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
 		code=code.concat(song.cl);
 	    }
@@ -95,7 +96,11 @@ function generateCode(){
 	    else{
 		code=code.concat('|',song.nm,'||||');
 	    }
-	    code=code.concat(song.exCombo,'|',song.mp3);
+	    code=code.concat(song.exCombo,'|');
+	    if($("ckIfMaster").checked){
+		code=code.concat(song.maCombo,'||');
+	    }
+	    code=code.concat(song.mp3);
 	    if(song.lk){
 		code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
 	    }
