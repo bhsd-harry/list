@@ -215,19 +215,37 @@ function changeIsFirst(){
 
 function adjustLow(){
     if(getInt("txtLow")>getInt("txtHigh")){
-	$("txtLow").value=$$("txtHigh");
+	$("txtLow").selectedIndex=$("txtHigh").selectedIndex;
     }
 }
 
 function adjustHigh(){
     if(getInt("txtHigh")<getInt("txtLow")){
-        $("txtHigh").value=$$("txtLow");
+        $("txtHigh").selectedIndex=$("txtLow").selectedIndex;
     }
 }
 
 function adjustLvl(){
-    $("txtLow").value=1;
-    $("txtHigh").value=4+($("ckIfMaster").checked)+($$("ddlEvent")==1);
+    let low=$("txtLow");
+    let high=$("txtHigh");
+    if($("ckIfMaster").checked){
+	if(low.length<6){
+	    low.options.add(new Option("MASTER",6));
+	}
+	if(high.length<6){
+            high.options.add(new Option("MASTER",6));
+        }
+    }
+    else{
+        if(low.length>5){
+            low.options.remove(5);
+	}
+        if(high.length>5){
+            high.options.remove(5);
+        }
+    }
+    low.selectedIndex=0;
+    high.selectedIndex=3+($("ckIfMaster").checked)+($$("ddlEvent")==1);
 }
 
 function endList(){

@@ -45,12 +45,26 @@
 		</td>
                 <td>
                     <span>最低难度</span>
-                    <input type="text" id="txtLow" value="1" onchange="adjustLow()"/>
+                    <select id="txtLow" onchange="adjustLow()"/>
+			<option value=1>EASY</option>
+			<option value=2>NORMAL</option>
+			<option value=3>HARD</option>
+			<option value=4>EXPERT</option>
+			<option value=5>TECHNICAL</option>
+			<option value=6>MASTER</option>
+		    </select>
 		    <input type="button" value="还原" onclick="adjustLvl()"/>
                 </td>
                 <td>
                     <span>最高难度</span>
-                    <input type="text" id="txtHigh" value="4" onchange="adjustHigh()"/>
+                    <select id="txtHigh" selectedIndex=5 onchange="adjustHigh()"/>
+                        <option value=1>EASY</option>
+                        <option value=2>NORMAL</option>
+                        <option value=3>HARD</option>
+                        <option value=4>EXPERT</option>
+                        <option value=5>TECHNICAL</option>
+                        <option value=6>MASTER</option>
+                    </select>
 		    <input type="button" value="还原" onclick="adjustLvl()"/>
                 </td>
 		<td>
