@@ -31,10 +31,10 @@
 		    <span>活动类型</span>
 		    <select id="ddlEvent" onchange="initialDisabling()">
 			<option value=0>散步拉力赛挑战歌曲</option>
-			<option value=1>SCORE MATCH</option>
-			<option value=2>Medley Festival</option>
-			<option value=3>友情大合战</option>
-			<option value=4>Challenge Festival</option>
+			<option value=1>SCORE MATCH（开发中）</option>
+			<option value=2>Medley Festival（开发中）</option>
+			<option value=3>友情大合战（开发中）</option>
+			<option value=4>Challenge Festival（开发中）</option>
 		    </select>
 		</td>
 	    </tr>
@@ -52,7 +52,7 @@
                     <input type="text" id="txtHigh" value="4" />
                 </td>
 		<td>
-		    <label for="ckIsFirst">
+		    <label for="ckIsFirst" id="lbIsFirst" onclick="changeIsFirst()">
 			<input type="checkbox" id="ckIsFirst" checked=true />第一首该色歌曲
 		    </label>
 		</td>
@@ -63,7 +63,7 @@
                     <select id="ddlRound"></select>
                 </td>
                 <td>
-                    <label for="ckIsFirst">
+                    <label for="ckIsFirst" id="lbIfMaster" onclick="changeIfMaster()">
                         <input type="checkbox" id="ckIfMaster" onchange="ifMaster()"/>MASTER
                     </label>
                 </td>

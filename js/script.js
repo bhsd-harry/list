@@ -15,6 +15,7 @@ function initialDisabling(){
 	case "1":
 	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
 	    code=code.concat("sm|diff=easy,normal,hard,expert");
+	    generateRounds(1);
 	    break;
 	case "2":
 	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
@@ -31,8 +32,19 @@ function initialDisabling(){
 	    enabling("ddlRound");
 	    $("ckIfMaster").checked=false;
 	    code=code.concat("cf");
+	    generateRounds(4);
 	    break;
     }
+
+// 开发中
+    if(getInt("ddlEvent")>0){
+	disabling("btnCode");
+    }
+    else{
+	enabling("btnCode");
+    }
+// 开发中
+
     clearTable();
     if($("ckIfMaster").checked){
         code=code.concat(",master");
@@ -46,7 +58,6 @@ function initialSongList(){
     for(let i=oldLength;i>=0;i--){
 	$("ddlSong").remove(i);
     }
-    let song=$$("ddlGroup");
     songs.forEach(function(song){
 	if((song.group==$$("ddlGroup") || $$("ddlGroup")==0) && ($$("ddlCl")=="0" || song.cl.toLowerCase()==$$("ddlCl"))){
 	    $("ddlSong").options.add(new Option(song.nm,song.id));
@@ -127,5 +138,40 @@ function ifMaster(){
     else{
 	$("txtHigh").value=4;
 	startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
+    }
+}
+
+function generateRounds(r){
+/*
+    let round=$("ddlRound");
+    for(let i=round.length;i>=0;i--){
+	round.remove(i);
+    }
+    switch(r){
+	case 1:
+	    round.options.add(new Option("前期",1));
+	    round.options.add(new Option("中期",2));
+	    break;
+	case 4:
+	    for(let i=1;i<=5;i++){
+		round.options.add(new Option(`第${i}轮`,i);
+	    }
+	    break;
+    }
+*/
+}
+
+function changeIfMaster(){
+    let ck=$("ckIfMaster");
+    if(ck.disabled==false){
+	ck.checked=!(ck.checked);
+        ifMaster();
+    }
+}
+
+function changeIsFirst(){
+    let ck=$("ckIsFirst");
+    if(ck.disabled==false){
+        ck.checked=!(ck.checked);
     }
 }
