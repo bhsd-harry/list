@@ -160,7 +160,7 @@ function initSongPool(){
     initialSongMuse("smile","LLPrintemps4.jpg","WAO-WAO Powerful day!","10","10","592","12","952","m 094.mp3");
     initialSongMuse("pure","LLlilywhite4.jpg","思い出以上になりたくて","9","","306","11","509","m 095.mp3");
     initialSongMuse("cool","LLBiBi4.jpg","錯覚CROSSROADS","9","9","500","11","707","m 097.mp3");
-    initialSongMuse("smile","A song for You! You? You!! cover preview.jpg","A song for You! You? You!!","10","","497","","","M 257.mp3");
+    initialSongMuse("smile","A song for You! You? You!! cover preview.jpg","A song for You! You? You!!","10","9","497","12","865","M 257.mp3");
     initialSongMuse("pure","","これから","9","","307","11","505","m 142.mp3","从今以后");
     initialSongMuse("cool","あ・の・ね・が・ん・ば・れ！","あ・の・ね・が・ん・ば・れ！","9","10","431","11","608","m 028.mp3","所以说请加油吧");
     initialSongMuse("smile","LLMFV2.jpg","Mermaid festa vol.2 ~Passionate~","11","","584","12","803","m 016.mp3");
