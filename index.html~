@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="divInput">
+	<table>
+	    <tr>
+		<td>
+		    <select id="ddlGroup" onchange="initialSongList()">
+			<option value=0>任意</option>
+			<option value=1>μ's</option>
+			<option value=2>Aqours</option>
+		    </select>
+		</td>
+		<td><select id="ddlSong"></select></td>
+		<td>
+		    <select id="ddlEvent">
+			<option value=0>散步拉力赛挑战歌曲</option>
+		    </select>
+		</td>
+		<td>
+		    <span>序号</span>
+		    <input type="text" id="txtOrder" value="1" />
+		</td>
+		<td>
+		    <label for="ckIsFirst">
+			<input type="checkbox" id="ckIsFirst" />第一首该色歌曲
+		    </label>
+		<td>
+		    <input type="button" value="生成Wiki代码" id="btnCode" onclick="generateCode()"/>
+		</td>
+	    </tr>
+	</table>
+    </div>
+    <div id="divOutput">
+	<table>
+	    <tr>
+		<td><span id="spanOutput"></span></td>
+	    </tr>
+	</table>
+    </div>
+</body>
+</html>
+<script src="js/script.js"></script>
+<script src="js/common.js"></script>
+<script src="js/data.js"></script>
+<script>
+    "use strict";
+    initialData();
+    initialSongList();
+</script>
