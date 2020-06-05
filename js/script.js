@@ -9,13 +9,38 @@ function initialDisabling(){
     switch($$("ddlEvent")){
 	case "0":
 	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    $("ckIfMaster").checked=false;
 	    code=code.concat("as2|diff=easy,normal,hard,expert");
+	    break;
+	case "1":
+	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    code=code.concat("sm|diff=easy,normal,hard,expert");
+	    break;
+	case "2":
+	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    $("ckIfMaster").checked=false;
+	    code=code.concat("mf|diff=easy,normal,hard,expert");
+	    break;
+	case "3":
+	    disabling("txtLow","txtHigh","ddlRound");
+	    enabling("ckIfMaster");
+	    code=code.concat("cm|diff=easy,normal,hard,expert");
+	    break;
+	case "4":
+	    disabling("txtLow","txtHigh","ckIfMaster");
+	    enabling("ddlRound");
+	    $("ckIfMaster").checked=false;
+	    code=code.concat("cf");
 	    break;
     }
     clearTable();
+    if($("ckIfMaster").checked){
+        code=code.concat(",master");
+    }
     let tb=$("tbOutput");
     tb.rows[0].innerHTML=code;
 }
+
 function initialSongList(){
     let oldLength=$("ddlSong").length;
     for(let i=oldLength;i>=0;i--){
@@ -93,5 +118,14 @@ function nextRow(){
 }
 
 function ifMaster(){
-    $("txtHigh").value=5;
+    let tb=$("tbOutput");
+    let startRow=tb.rows[0];
+    if($("ckIfMaster").checked){
+	$("txtHigh").value=5;
+	startRow.innerHTML=startRow.innerHTML.concat(",master");
+    }
+    else{
+	$("txtHigh").value=4;
+	startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
+    }
 }
