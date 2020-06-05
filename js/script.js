@@ -4,6 +4,7 @@ var currCl="";
 var lastCl=undefined;
 
 function initialDisabling(){
+    disabling("btnNext");
     switch($$("ddlEvent")){
 	case "0":
 	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster");
@@ -40,15 +41,16 @@ function generateCode(){
 	    if(song.cover){
 		if(song.cover.endsWith('.jpg')){
 		    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-		    code=code.concat(song.nm,'||||',song.mp3);
+		    code=code.concat(song.nm,'||||');
 		}
 		else{
-		    code=code.concat(song.cover,'|||',song.nm,'|',song.mp3);
+		    code=code.concat(song.cover,'|||',song.nm,'|');
 		}
 	    }
 	    else{
-		code=code.concat(song.nm,'||||',song.mp3);
+		code=code.concat(song.nm,'||||');
 	    }
+	    code=code.concat(song.exCombo,'|',song.mp3);
 	    if(song.lk){
 		code=code.concat('|lk',$$("txtOrder"),'=',song.lk,addition);
 	    }
@@ -60,6 +62,7 @@ function generateCode(){
     let tb=$("tbOutput");
     let lastRow=tb.rows[tb.rows.length-1];
     lastRow.innerHTML=code;
+    enabling("btnNext");
 }
 
 function clearTable(){
@@ -70,6 +73,7 @@ function clearTable(){
     }
     tb.rows[0].innerHTML="";
     enabling("ckIsFirst","txtOrder");
+    disabling("btnNext");
     lastCl=undefined;
     $("txtOrder").value=1;
 }
@@ -77,7 +81,7 @@ function clearTable(){
 function nextRow(){
     let tb=$("tbOutput");
     tb.insertRow(-1);
-    disabling("ckIsFirst","txtOrder");
+    disabling("ckIsFirst","txtOrder","btnNext");
     lastCl=currCl;
     $("txtOrder").value=getInt("txtOrder")+1;
 }
