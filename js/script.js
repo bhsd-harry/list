@@ -206,7 +206,10 @@ function nextRow(){
     if(arr.length>=getInt("txtOrder")){
 	let i=0;
 	for(;i<songs.length;i++){
-	    if(songs[i].nm==arr[getInt("txtOrder")-1]){break;}
+	    let input=arr[getInt("txtOrder")-1];
+	    if(songs[i].nm==input || songs[i].nm==input.replace('!','！') || songs[i].nm==input.replace('?','？') || songs[i].nm==input.replace('\"','“').replace('\"','”') || songs[i].nm==input.replace('！','!') || songs[i].nm==input.replace('？','?')){
+                break;
+            }
 	}
 	if(i<songs.length){
 	    $("ddlGroup").selectedIndex=0;
@@ -374,7 +377,10 @@ function upload(){
 	clearTable();
         let i=0;
         for(;i<songs.length;i++){
-            if(songs[i].nm==arr[0]){break;}
+	    let input=arr[0];
+            if(songs[i].nm==input || songs[i].nm==input.replace('!','！') || songs[i].nm==input.replace('?','？') || songs[i].nm==input.replace('\"','“').replace('\"','”') || songs[i].nm==input.replace('！','!') || songs[i].nm==input.replace('？','?')){
+		break;
+	    }
         }
         if(i<songs.length){
             $("ddlGroup").selectedIndex=0;
