@@ -1,6 +1,7 @@
 "use strict";
 
 var arr=[];
+var cf=[];
 var currCl="";
 var currRound="";
 var lastCl=undefined;
@@ -67,14 +68,14 @@ function generateCode(){
     let code='|';
     let addition='';
     currCl=song.cl.toLowerCase();
-    if($$("ddlEvent")==1 || $$("ddlEvent")==4){
+    if($$("ddlEvent")=="1" || $$("ddlEvent")=="4"){
 	currRound=$$("ddlRound");
     }
     switch($$("ddlEvent")){
 	case "0":
 	case "2":
 	case "3":
-	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
+	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
 		code=code.concat(song.cl);
 	    }
 	    if(song.cover){
@@ -108,7 +109,7 @@ function generateCode(){
 	    if(getInt("txtHigh")<5+$("ckIfMaster").checked){
 		whitespace=whitespace.concat($$("txtHigh"));
 	    }
-	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
+	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
                 code=code.concat(song.cl);
             }
             if(song.cover){
@@ -123,7 +124,7 @@ function generateCode(){
             else{
                 code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'||');
             }
-	    if(!lastRound || currRound!==lastRound){
+	    if(!lastRound || currRound!=lastRound){
                 code=code.concat(currRound);
             }
 	    code=code.concat('|',song.mp3);
@@ -133,7 +134,7 @@ function generateCode(){
             code=code.concat(addition);
             break;
 	case "4":
-	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!==lastCl)){
+	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
                 code=code.concat(song.cl);
             }
 	    if(song.cover){
@@ -161,7 +162,7 @@ function generateCode(){
 		code=code.concat(song.exLevel1);
 	    }
 	    code=code.concat('|',song.exCombo,'|');
-	    if(!lastRound || currRound!==lastRound){
+	    if(!lastRound || currRound!=lastRound){
                 code=code.concat(currRound);
             }
 	    code=code.concat('|',song.mp3);
@@ -199,7 +200,7 @@ function nextRow(){
     tb.insertRow(-1);
     disabling("ckIsFirst","txtOrder","btnNext");
     lastCl=currCl;
-    if($$("ddlEvent")==1 || $$("ddlEvent")==4){
+    if($$("ddlEvent")=="1" || $$("ddlEvent")=="4"){
 	lastRound=currRound;
     }
     $("txtOrder").value=getInt("txtOrder")+1;
@@ -297,7 +298,7 @@ function adjustLvl(){
         }
     }
     low.selectedIndex=0;
-    high.selectedIndex=3+($("ckIfMaster").checked)+($$("ddlEvent")==1);
+    high.selectedIndex=3+($("ckIfMaster").checked)+($$("ddlEvent")=="1");
 }
 
 function endList(){
@@ -330,10 +331,23 @@ function nextRound(){
 
 function upload(){
     arr=[];
+    cf=[];
     let lines=$$("txtTable").split('\n');
     lines.forEach(function(item){
 	let tabs=item.split('\t');
-	arr.push(tabs[getInt("txtCol")-1].trim());
+	if($$("ddlEvent")!="4"){
+	    arr.push(tabs[getInt("txtCol")-1].trim());
+	}
+	else{
+	    let song_comment=tabs[getInt("txtCol")-1].trim().split('（');
+	    arr.push(song_comment[0]);
+	    if(song_comment.length>1 && song_comment[1]=="随机）"){
+		cf.push(1);
+	    }
+	    else{
+		cf.push(0);
+	    }
+	}
     });
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
     disabling("btnUpload");
@@ -351,7 +365,7 @@ function upload(){
         }
     }
 */
-//    if(arr.length>0 && ($$("ddlEvent")==0 || $$("ddlEvent")==2 || $$("ddlEvent")==3)){
+//    if(arr.length>0 && ($$("ddlEvent")=="0" || $$("ddlEvent")=="2" || $$("ddlEvent")=="3")){
     if(arr.length>0){
 	clearTable();
         let i=0;
@@ -363,6 +377,9 @@ function upload(){
             $("ddlCl").selectedIndex=0;
             initialSongList();
             $("ddlSong").selectedIndex=i;
+	    if($$("ddlEvent")=="4"){
+		$("ddlComment").selectedIndex=cf[0];
+	    }
 	    generateCode();
         }
 	else{
@@ -373,7 +390,10 @@ function upload(){
 	    nextRow();
 	    if($$("btnUpload")=="没有这首歌曲"){exit();}
 	    let song=songs[$$("ddlSong")];
-	    if(lastCl!=="smile" && song.cl=="smile"){nextRound();}
+	    if(lastCl!="smile" && song.cl=="smile"){nextRound();}
+	    if($$("ddlEvent")=="4"){
+		$("ddlComment").selectedIndex=cf[j];
+	    }
 	    generateCode();
 	}
 	nextRow();
