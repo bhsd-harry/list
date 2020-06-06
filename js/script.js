@@ -340,12 +340,12 @@ function upload(){
 	    song_comment=tabs[getInt("txtCol")].trim();
 	}
 	if($$("ddlEvent")!="4"){
-	    arr.push(song_comment);
+	    arr.push(song_comment.trim());
 	}
 	else{
 	    song_comment=song_comment.split('（');
-	    arr.push(song_comment[0]);
-	    if(song_comment.length>1 && song_comment[1]=="随机）"){
+	    arr.push(song_comment[0].trim());
+	    if(song_comment.length>1 && song_comment[1].trim()=="随机）"){
 		cf.push(1);
 	    }
 	    else{
