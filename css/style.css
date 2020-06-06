@@ -23,11 +23,21 @@ input[type="button"] {
     font-size:20px;
 }
 
-input[type="text"] {
+textarea {
+    font-size:16px;
+    width:240px;
+    height:100px;
+}
+
+input[type="number"] {
     font-size:20px;
     width:40px;
 }
 
 label, select, input[type="button"] {
     cursor:pointer;
+}
+
+span {
+    font-size:20px;
 }

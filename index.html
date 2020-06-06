@@ -51,7 +51,7 @@
                 </td>
 		<td>
 		    <span>序号</span>
-		    <input type="text" id="txtOrder" value="1" />
+		    <input type="number" id="txtOrder" value="1" />
 		</td>
                 <td>
 		    <span>轮次</span>
@@ -99,8 +99,15 @@
 	    </tr>
 	</table>
     </div>
-    <div id="divOutput" style="padding:50px">
-	<input type="button" value="清空" id="btnClear" style="float:right" onclick="clearTable()"/>
+    <div id="divAlter" style="padding:10px;float:right;">
+	<input type="button" value="清空歌曲列表" id="btnClear" onclick="clearTable()"/><br /><br /><br />
+	<span>歌曲名称所在列</span>
+	<input type="number" id="txtCol" value="1" /><br />
+	<textarea id="txtTable" placeholder="请输入以制表符分隔的旧版歌曲列表"></textarea><br />
+	<input type="button" value="生成歌曲列表" id="btnUpload" onclick="upload()"/>
+	<input type="button" value="清空" id="btnReUpload" onclick="reUpload()"/>
+    </div>
+    <div id="divOutput" style="padding:30px">
 	<table id="tbOutput">
 	    <tr></tr>
 	    <tr></tr>

@@ -1,5 +1,6 @@
 "use strict";
 
+var arr=[];
 var currCl="";
 var currRound="";
 var lastCl=undefined;
@@ -79,14 +80,14 @@ function generateCode(){
 	    if(song.cover){
 		if(song.cover.endsWith('.jpg')){
 		    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-		    code=code.concat('|',song.nm,'||||');
+		    code=code.concat('|',song.nm.replace('=',"{{=}}"),'||||');
 		}
 		else{
-		    code=code.concat('|',song.cover,'|||',song.nm,'|');
+		    code=code.concat('|',song.cover,'|||',song.nm.replace('=',"{{=}}"),'|');
 		}
 	    }
 	    else{
-		code=code.concat('|',song.nm,'||||');
+		code=code.concat('|',song.nm.replace('=',"{{=}}"),'||||');
 	    }
 	    code=code.concat(song.exCombo,'|');
 	    if($("ckIfMaster").checked){
@@ -113,14 +114,14 @@ function generateCode(){
             if(song.cover){
                 if(song.cover.endsWith('.jpg')){
                     addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-                    code=code.concat('|',song.nm,whitespace,'||');
+                    code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'||');
                 }
                 else{
-                    code=code.concat('|',song.cover,whitespace,'|',song.nm,'|');
+                    code=code.concat('|',song.cover,whitespace,'|',song.nm.replace('=',"{{=}}"),'|');
                 }
             }
             else{
-                code=code.concat('|',song.nm,whitespace,'||');
+                code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'||');
             }
 	    if(!lastRound || currRound!==lastRound){
                 code=code.concat(currRound);
@@ -138,14 +139,14 @@ function generateCode(){
 	    if(song.cover){
                 if(song.cover.endsWith('.jpg')){
                     addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-                    code=code.concat('|',song.nm,'||');
+                    code=code.concat('|',song.nm.replace('=',"{{=}}"),'||');
                 }
                 else{
-                    code=code.concat('|',song.cover,'|',song.nm,'|');
+                    code=code.concat('|',song.cover,'|',song.nm.replace('=',"{{=}}"),'|');
                 }
             }
             else{
-                code=code.concat('|',song.nm,'||');
+                code=code.concat('|',song.nm.replace('=',"{{=}}"),'||');
             }
 	    if(song.daily){
 		code=code.concat("日替|");
@@ -202,6 +203,21 @@ function nextRow(){
 	lastRound=currRound;
     }
     $("txtOrder").value=getInt("txtOrder")+1;
+    if(arr.length>=getInt("txtOrder")){
+	let i=0;
+	for(;i<songs.length;i++){
+	    if(songs[i].nm==arr[getInt("txtOrder")-1]){break;}
+	}
+	if(i<songs.length){
+	    $("ddlGroup").selectedIndex=0;
+	    $("ddlCl").selectedIndex=0;
+	    initialSongList();
+	    $("ddlSong").selectedIndex=i;
+	}
+	else{
+	    $("btnUpload").value="没有这首歌曲";
+	}
+    }
 }
 
 function ifMaster(){
@@ -289,6 +305,13 @@ function endList(){
     tb.rows[tb.rows.length-1].innerHTML="}}";
 }
 
+function reUpload(){
+    arr=[];
+    enabling("btnUpload");
+    $("btnUpload").value="生成歌曲列表";
+    $("txtTable").value="";
+}
+
 function adjustRound(){
     let round=$("ddlRound");
     if(round.selectedIndex==round.length-1){
@@ -303,4 +326,57 @@ function nextRound(){
     let round=$("ddlRound");
     round.selectedIndex=round.selectedIndex+1;
     adjustRound();
+}
+
+function upload(){
+    arr=[];
+    let lines=$$("txtTable").split('\n');
+    lines.forEach(function(item){
+	let tabs=item.split('\t');
+	arr.push(tabs[getInt("txtCol")-1].trim());
+    });
+    $("btnUpload").value=`已上传${arr.length}首歌曲`;
+    disabling("btnUpload");
+/*
+    if(arr.length>=getInt("txtOrder")){
+	let i=0;
+        for(;i<songs.length;i++){
+            if(songs[i].nm==arr[getInt("txtOrder")-1]){break;}
+        }
+        if(i<songs.length){
+            $("ddlGroup").selectedIndex=0;
+            $("ddlCl").selectedIndex=0;
+            initialSongList();
+            $("ddlSong").selectedIndex=i;
+        }
+    }
+*/
+//    if(arr.length>0 && ($$("ddlEvent")==0 || $$("ddlEvent")==2 || $$("ddlEvent")==3)){
+    if(arr.length>0){
+	clearTable();
+        let i=0;
+        for(;i<songs.length;i++){
+            if(songs[i].nm==arr[0]){break;}
+        }
+        if(i<songs.length){
+            $("ddlGroup").selectedIndex=0;
+            $("ddlCl").selectedIndex=0;
+            initialSongList();
+            $("ddlSong").selectedIndex=i;
+	    generateCode();
+        }
+	else{
+	    $("btnUpload").value="没有这首歌曲";
+	    exit();
+	}
+	for(let j=1;j<arr.length;j++){
+	    nextRow();
+	    if($$("btnUpload")=="没有这首歌曲"){exit();}
+	    let song=songs[$$("ddlSong")];
+	    if(lastCl!=="smile" && song.cl=="smile"){nextRound();}
+	    generateCode();
+	}
+	nextRow();
+	endList();
+    }
 }
