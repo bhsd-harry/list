@@ -207,7 +207,7 @@ function nextRow(){
 	let i=0;
 	for(;i<songs.length;i++){
 	    let input=arr[getInt("txtOrder")-1];
-	    if(songs[i].nm==input || songs[i].nm==input.replace('!','！') || songs[i].nm==input.replace('?','？') || songs[i].nm==input.replace('\"','“').replace('\"','”') || songs[i].nm==input.replace('！','!') || songs[i].nm==input.replace('？','?')){
+	    if(songs[i].nm.replace(/(!|\?|！|？|"|“|”)/g,'')==input.replace(/(!|\?|！|？|"|“|”)/g,'')){
                 break;
             }
 	}
@@ -378,7 +378,7 @@ function upload(){
         let i=0;
         for(;i<songs.length;i++){
 	    let input=arr[0];
-            if(songs[i].nm==input || songs[i].nm==input.replace('!','！') || songs[i].nm==input.replace('?','？') || songs[i].nm==input.replace('\"','“').replace('\"','”') || songs[i].nm==input.replace('！','!') || songs[i].nm==input.replace('？','?')){
+            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”)/g,'')==input.replace(/(!|\?|！|？|"|“|”)/g,'')){
 		break;
 	    }
         }
