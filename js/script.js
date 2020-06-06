@@ -343,7 +343,7 @@ function upload(){
 	    arr.push(song_comment);
 	}
 	else{
-	    let song_comment=song_comment.split('（');
+	    song_comment=song_comment.split('（');
 	    arr.push(song_comment[0]);
 	    if(song_comment.length>1 && song_comment[1]=="随机）"){
 		cf.push(1);
