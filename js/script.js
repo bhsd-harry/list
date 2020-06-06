@@ -63,8 +63,7 @@ function initialSongList(){
 }
 
 function generateCode(){
-    let id=$$("ddlSong");
-    let song=songs[id];
+    let song=songs[$$("ddlSong")];
     let code='|';
     let addition='';
     currCl=song.cl.toLowerCase();
@@ -214,6 +213,7 @@ function nextRow(){
 	    $("ddlCl").selectedIndex=0;
 	    initialSongList();
 	    $("ddlSong").selectedIndex=i;
+	    autoAdjustLvl();
 	}
 	else{
 	    $("btnUpload").value="没有这首歌曲";
@@ -335,11 +335,15 @@ function upload(){
     let lines=$$("txtTable").split('\n');
     lines.forEach(function(item){
 	let tabs=item.split('\t');
+	let song_comment=tabs[getInt("txtCol")-1].trim();
+	if(song_comment=="Smile" || song_comment=="Pure" || song_comment=="Cool" || song_comment==""){
+	    song_comment=tabs[getInt("txtCol")].trim();
+	}
 	if($$("ddlEvent")!="4"){
-	    arr.push(tabs[getInt("txtCol")-1].trim());
+	    arr.push(song_comment);
 	}
 	else{
-	    let song_comment=tabs[getInt("txtCol")-1].trim().split('（');
+	    let song_comment=song_comment.split('（');
 	    arr.push(song_comment[0]);
 	    if(song_comment.length>1 && song_comment[1]=="随机）"){
 		cf.push(1);
@@ -377,6 +381,7 @@ function upload(){
             $("ddlCl").selectedIndex=0;
             initialSongList();
             $("ddlSong").selectedIndex=i;
+	    autoAdjustLvl();
 	    if($$("ddlEvent")=="4"){
 		$("ddlComment").selectedIndex=cf[0];
 	    }
@@ -398,5 +403,19 @@ function upload(){
 	}
 	nextRow();
 	endList();
+    }
+}
+
+function autoAdjustLvl(){
+    if($$("ddlEvent")=="1"){
+	let song=songs[$$("ddlSong")];
+	if(song.daily){
+	    $("txtLow").selectedIndex=4;
+	    $("txtHigh").selectedIndex=4;
+	}
+	else{
+	    $("txtLow").selectedIndex=0;
+	    $("txtHigh").selectedIndex=4+$("ckIfMaster").checked;
+	}
     }
 }
