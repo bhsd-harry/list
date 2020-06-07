@@ -353,7 +353,7 @@ function upload(){
     combo=[];
     let lines=$$("txtTable").split('\n');
     for(let k=0;k<lines.length;k++){
-	let item=lines[k].replace(/^(第|属|阅|本|折).*/g,'');
+	let item=lines[k].replace(/^(活|第|属|阅|本|折).*/g,'');
 	if(item==''){continue;}
 	let tabs=item.split('\t');
 	let song_comment=tabs[getInt("txtCol")-1].trim();
