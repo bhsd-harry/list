@@ -348,6 +348,7 @@ function upload(){
 	    arr.push(song_comment.trim());
 	}
 	else{
+	    song_comment=song_comment.replace('(','（').replace(')','）');
 	    song_comment=song_comment.split('（');
 	    arr.push(song_comment[0].trim());
 	    if(song_comment.length>1 && song_comment[1].trim()=="随机）"){
