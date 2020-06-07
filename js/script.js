@@ -336,7 +336,9 @@ function upload(){
     arr=[];
     cf=[];
     let lines=$$("txtTable").split('\n');
-    lines.forEach(function(item){
+    for(let k=0;k<lines.length;k++){
+	let item=lines[k];
+	if(item==""){break;}
 	let tabs=item.split('\t');
 	let song_comment=tabs[getInt("txtCol")-1].trim();
 	if(song_comment=="Smile" || song_comment=="Pure" || song_comment=="Cool" || song_comment==""){
@@ -355,7 +357,7 @@ function upload(){
 		cf.push(0);
 	    }
 	}
-    });
+    };
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
     disabling("btnUpload");
 /*
