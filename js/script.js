@@ -69,7 +69,6 @@ function generateCode(){
     let code='|';
     let addition='';
     let exCombo=0;
-    let lvl=0;
     currCl=song.cl.toLowerCase();
     if($$("ddlEvent")=="1" || $$("ddlEvent")=="4"){
 	currRound=$$("ddlRound");
@@ -164,11 +163,16 @@ function generateCode(){
 	    else{
 		code=code.concat($$("ddlComment"),'|');
 	    }
-	    if(!song.daily && $$("ddlComment")=="随机"){
-		code=code.concat(song.exLevel2);
+	    if(lvl.length>=getInt("txtOrder")){
+		code=code.concat(lvl[getInt("txtOrder")-1]);
 	    }
 	    else{
-		code=code.concat(song.exLevel1);
+	        if(!song.daily && $$("ddlComment")=="随机"){
+		    code=code.concat(song.exLevel2);
+	        }
+	        else{
+		    code=code.concat(song.exLevel1);
+		}
 	    }
 	    code=code.concat('|',exCombo,'|');
 	    if(!lastRound || currRound!=lastRound){
