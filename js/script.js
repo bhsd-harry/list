@@ -221,7 +221,7 @@ function nextRow(){
 	let i=0;
 	for(;i<songs.length;i++){
 	    let input=arr[getInt("txtOrder")-1];
-	    if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()==input.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()){
+	    if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()==input.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()){
                 break;
             }
 	}
@@ -353,8 +353,8 @@ function upload(){
     combo=[];
     let lines=$$("txtTable").split('\n');
     for(let k=0;k<lines.length;k++){
-	let item=lines[k];
-	if(item==""){break;}
+	let item=lines[k].replace(/^(第|属|阅|本).*/g,'');
+	if(item==''){continue;}
 	let tabs=item.split('\t');
 	let song_comment=tabs[getInt("txtCol")-1].trim();
 	if(song_comment=="Smile" || song_comment=="Pure" || song_comment=="Cool" || song_comment==""){
@@ -375,10 +375,20 @@ function upload(){
 	    }
 	}
 	if($("ckIfLvl").checked){
-	    lvl.push(tabs[getInt("txtColLvl")-1].trim());
+	    if(tabs[getInt("txtCol")-1].trim()=="Smile" || tabs[getInt("txtCol")-1].trim()=="Pure" || tabs[getInt("txtCol")-1].trim()=="Cool"){
+		lvl.push(tabs[getInt("txtColLvl")].trim());
+	    }
+	    else{
+		lvl.push(tabs[getInt("txtColLvl")-1].trim());
+	    }
 	}
 	if($("ckIfCombo").checked){
-            combo.push(tabs[getInt("txtColCombo")-1].trim());
+            if(tabs[getInt("txtCol")-1].trim()=="Smile" || tabs[getInt("txtCol")-1].trim()=="Pure" || tabs[getInt("txtCol")-1].trim()=="Cool"){
+                combo.push(tabs[getInt("txtColCombo")].trim());
+	    }
+            else{
+                combo.push(tabs[getInt("txtColCombo")-1].trim());
+	    }
         }
     };
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
@@ -403,7 +413,7 @@ function upload(){
         let i=0;
         for(;i<songs.length;i++){
 	    let input=arr[0];
-            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()==input.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()){
+            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()==input.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()){
 		break;
 	    }
         }
