@@ -207,7 +207,7 @@ function nextRow(){
 	let i=0;
 	for(;i<songs.length;i++){
 	    let input=arr[getInt("txtOrder")-1];
-	    if(songs[i].nm.replace(/(!|\?|！|？|"|“|”)/g,'')==input.replace(/(!|\?|！|？|"|“|”)/g,'')){
+	    if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()==input.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()){
                 break;
             }
 	}
@@ -378,7 +378,7 @@ function upload(){
         let i=0;
         for(;i<songs.length;i++){
 	    let input=arr[0];
-            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”)/g,'')==input.replace(/(!|\?|！|？|"|“|”)/g,'')){
+            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()==input.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・)/g,'').toLowerCase()){
 		break;
 	    }
         }
