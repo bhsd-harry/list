@@ -2,6 +2,8 @@
 
 var arr=[];
 var cf=[];
+var lvl=[];
+var combo=[];
 var currCl="";
 var currRound="";
 var lastCl=undefined;
@@ -66,9 +68,17 @@ function generateCode(){
     let song=songs[$$("ddlSong")];
     let code='|';
     let addition='';
+    let exCombo=0;
+    let lvl=0;
     currCl=song.cl.toLowerCase();
     if($$("ddlEvent")=="1" || $$("ddlEvent")=="4"){
 	currRound=$$("ddlRound");
+    }
+    if(combo.length>=getInt("txtOrder")){
+	exCombo=combo[getInt("txtOrder")-1];
+    }
+    else{
+	exCombo=song.exCombo;
     }
     switch($$("ddlEvent")){
 	case "0":
@@ -89,7 +99,7 @@ function generateCode(){
 	    else{
 		code=code.concat('|',song.nm.replace('=',"{{=}}"),'||||');
 	    }
-	    code=code.concat(song.exCombo,'|');
+	    code=code.concat(exCombo,'|');
 	    if($("ckIfMaster").checked){
 		code=code.concat(song.maCombo,'||');
 	    }
@@ -160,7 +170,7 @@ function generateCode(){
 	    else{
 		code=code.concat(song.exLevel1);
 	    }
-	    code=code.concat('|',song.exCombo,'|');
+	    code=code.concat('|',exCombo,'|');
 	    if(!lastRound || currRound!=lastRound){
                 code=code.concat(currRound);
             }
@@ -335,6 +345,8 @@ function nextRound(){
 function upload(){
     arr=[];
     cf=[];
+    lvl=[];
+    combo=[];
     let lines=$$("txtTable").split('\n');
     for(let k=0;k<lines.length;k++){
 	let item=lines[k];
@@ -358,6 +370,12 @@ function upload(){
 		cf.push(0);
 	    }
 	}
+	if($("ckIfLvl").checked){
+	    lvl.push(tabs[getInt("txtColLvl")-1].trim());
+	}
+	if($("ckIfCombo").checked){
+            combo.push(tabs[getInt("txtColCombo")-1].trim());
+        }
     };
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
     disabling("btnUpload");
