@@ -16,11 +16,6 @@ table th, table td {
 
 select {
     text-align:center;
-    font-size:20px;
-}
-
-input[type="button"] {
-    font-size:20px;
 }
 
 textarea {
@@ -34,8 +29,9 @@ input[type="number"] {
     width:40px;
 }
 
-label, select, input[type="button"] {
+label, select, input[type="button"], input[type="checkbox"] {
     cursor:pointer;
+    font-size:20px;
 }
 
 span {

@@ -35,18 +35,19 @@
 			<option value=2>Medley Festival</option>
 			<option value=3>友情大合战</option>
 			<option value=4>Challenge Festival</option>
+			<option value=5>节奏嘉年华</option>
 		    </select>
 		</td>
 	    </tr>
 	    <tr>
                 <td>
                     <label for="ckIsFirst" id="lbIfMaster" onclick="changeIfMaster()">
-                        <input type="checkbox" id="ckIfMaster" onchange="ifMaster()"/>MASTER
+                        <input type="checkbox" id="ckIfMaster" onchange="ifMaster()"/> MASTER
                     </label>
                 </td>
                 <td>
                     <label for="ckIsFirst" id="lbIsFirst" onclick="changeIsFirst()">
-                        <input type="checkbox" id="ckIsFirst" checked=true />第一首该色歌曲
+                        <input type="checkbox" id="ckIsFirst" checked=true /> 第一首该色歌曲
                     </label>
                 </td>
 		<td>
@@ -103,15 +104,20 @@
 	<input type="button" value="清空歌曲列表" id="btnClear" onclick="clearTable()"/><br /><br /><br />
 	<span>歌曲名称所在列</span>
 	<input type="number" id="txtCol" value="1" /><br />
-	<input type="checkbox" id="ckIfLvl" />
-	<span>歌曲难度所在列</span>
+	<label for="ckIfLvl" onclick="changeIfLvl">
+	    <input type="checkbox" id="ckIfLvl" /> 歌曲难度所在列
+	</label>
 	<input type="number" id="txtColLvl" value="2" /><br />
-	<input type="checkbox" id="ckIfCombo" />
-        <span>歌曲Combo所在列</span>
+	<label for="ckIfCombo" onclick="changeIfCombo()">
+	    <input type="checkbox" id="ckIfCombo" /> 歌曲Combo所在列
+        </label>
         <input type="number" id="txtColCombo" value="3" /><br />
 	<textarea id="txtTable" placeholder="请输入以制表符分隔的旧版歌曲列表"></textarea><br />
 	<input type="button" value="生成歌曲列表" id="btnUpload" onclick="upload()"/>
-	<input type="button" value="清空" id="btnReUpload" onclick="reUpload()"/>
+	<input type="button" value="清空" id="btnReUpload" onclick="reUpload()"/><br />
+	<label for="ckIfManual" onclick="changeIfManual()">
+	    <input type="checkbox" id="ckIfManual" /> 半自动生成代码
+	</label>
     </div>
     <div id="divOutput" style="padding:30px">
 	<table id="tbOutput">

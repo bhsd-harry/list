@@ -393,8 +393,7 @@ function upload(){
     };
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
     disabling("btnUpload");
-/*
-    if(arr.length>=getInt("txtOrder")){
+    if(arr.length>=getInt("txtOrder") && $("ckIfManual").checked){
 	let i=0;
         for(;i<songs.length;i++){
             if(songs[i].nm==arr[getInt("txtOrder")-1]){break;}
@@ -406,9 +405,7 @@ function upload(){
             $("ddlSong").selectedIndex=i;
         }
     }
-*/
-//    if(arr.length>0 && ($$("ddlEvent")=="0" || $$("ddlEvent")=="2" || $$("ddlEvent")=="3")){
-    if(arr.length>0){
+    if(arr.length>0 && $("ckIfManual").checked==false){
 	clearTable();
         let i=0;
         for(;i<songs.length;i++){
@@ -459,4 +456,16 @@ function autoAdjustLvl(){
 	    $("txtHigh").selectedIndex=4+$("ckIfMaster").checked;
 	}
     }
+}
+
+function changeIfManual(){
+    $("ckIfManual").checked=!($("ckIfManual").checked);
+}
+
+function changeIfLvl(){
+    $("ckIfLvl").checked=!($("ckIfLvl").checked);
+}
+
+function changeIfCombo(){
+    $("ckIfCombo").checked=!($("ckIfCombo").checked);
 }
