@@ -272,4 +272,5 @@ function initSongPool(){
     initialSongAqours("pure","","夏への扉 Never end ver.","11","","564","","","m 156.mp3","",true);
     initialSongAqours("smile","","真夏は誰のモノ？","11","","630","","","m 157.mp3",
 "",true);
+    initialSongAqours("smile","Shadowverse_OST_vol_2","大いなる決闘","9","","550","","","M 218.ogg");
 }
