@@ -310,20 +310,44 @@ function adjustHigh(){
 function adjustLvl(){
     let low=$("txtLow");
     let high=$("txtHigh");
+    if($$("ddlEvent")==1){
+	if(low.length<5){
+	    low.options.add(new Option("TECHNICAL",5));
+	}
+	if(high.length<5){
+            high.options.add(new Option("TECHNICAL",5));
+        }
+	if(low.length>4 && low[4].value>5){
+	    low.options.remove(4);
+	    low.options.add(new Option("TECHNICAL",5));
+	}
+	if(high.length>4 && high[4].value>5){
+            high.options.remove(4);
+            high.options.add(new Option("TECHNICAL",5));
+        }
+    }
+    else{
+	if(low.length>4 && low[4].value==5){
+	    low.options.remove(4);
+	}
+        if(high.length>4 && high[4].value==5){
+            high.options.remove(4);
+        }
+    }
     if($("ckIfMaster").checked){
-	if(low.length<6){
+	if(low[low.length-1].value<6){
 	    low.options.add(new Option("MASTER",6));
 	}
-	if(high.length<6){
+	if(high[high.length-1].value<6){
             high.options.add(new Option("MASTER",6));
         }
     }
     else{
-        if(low.length>5){
-            low.options.remove(5);
+        if(low[low.length-1].value>5){
+            low.options.remove(low.length-1);
 	}
-        if(high.length>5){
-            high.options.remove(5);
+        if(high[high.length-1].value>5){
+            high.options.remove(high.length-1);
         }
     }
     low.selectedIndex=0;
