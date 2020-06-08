@@ -14,32 +14,40 @@ function initialDisabling(){
     let code="{{llsifsonglist|type=";
     switch($$("ddlEvent")){
 	case "0":
-	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster","ddlComment");
+	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ddlRound","btnNextRound","ckIfMaster","ddlComment");
             $("ckIfMaster").checked=false;
             code=code.concat("as2|diff=easy,normal,hard,expert");
 	    break;
 	case "2":
-	    disabling("txtLow","txtHigh","ddlRound","ckIfMaster","ddlComment");
+	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ddlRound","btnNextRound","ckIfMaster","ddlComment");
 	    $("ckIfMaster").checked=false;
 	    code=code.concat("mf|diff=easy,normal,hard,expert");
 	    break;
 	case "1":
-	    enabling("txtLow","txtHigh","ddlRound","ckIfMaster");
+	    enabling("txtLow","txtHigh","btnBack1","btnBack2","ddlRound","btnNextRound","ckIfMaster");
 	    disabling("ddlComment");
 	    code=code.concat("sm|diff=easy,normal,hard,expert,technical");
+	    adjustLvl();
 	    generateRounds(1);
 	    break;
 	case "3":
-	    disabling("txtLow","txtHigh","ddlRound","ddlComment");
+	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ddlRound","btnNextRound","ddlComment");
 	    enabling("ckIfMaster");
 	    code=code.concat("cm|diff=easy,normal,hard,expert");
 	    break;
 	case "4":
-	    disabling("txtLow","txtHigh","ckIfMaster");
-	    enabling("ddlRound","ddlComment");
+	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ckIfMaster");
+	    enabling("ddlRound","btnNextRound","ddlComment");
 	    $("ckIfMaster").checked=false;
 	    code=code.concat("cf");
 	    generateRounds(4);
+	    break;
+	case "5":
+	    disabling("ddlRound","btnNextRound","ddlComment");
+	    enabling("txtLow","txtHigh","btnBack1","btnBack2","ckIfMaster");
+	    $("ckIfMaster").checked=true;
+	    code=code.concat("rc|diff=easy,normal,hard,expert");
+	    adjustLvl();
 	    break;
     }
 
@@ -109,12 +117,13 @@ function generateCode(){
 	    code=code.concat(addition);
 	    break;
 	case "1":
+	case "5":
 	    let whitespace='|';
 	    if(getInt("txtLow")>1){
 		whitespace=whitespace.concat(getInt("txtLow")-1);
 	    }
 	    whitespace=whitespace.concat('|');
-	    if(getInt("txtHigh")<5+$("ckIfMaster").checked){
+	    if(getInt("txtHigh")<4+($$("ddlEvent")==1)+$("ckIfMaster").checked){
 		whitespace=whitespace.concat($$("txtHigh"));
 	    }
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
@@ -123,17 +132,20 @@ function generateCode(){
             if(song.cover){
                 if(song.cover.endsWith('.jpg')){
                     addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-                    code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'||');
+                    code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'|');
                 }
                 else{
-                    code=code.concat('|',song.cover,whitespace,'|',song.nm.replace('=',"{{=}}"),'|');
+                    code=code.concat('|',song.cover,whitespace,'|',song.nm.replace('=',"{{=}}"));
                 }
             }
             else{
-                code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'||');
+                code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'|');
             }
-	    if(!lastRound || currRound!=lastRound){
-                code=code.concat(currRound);
+	    if($$("ddlEvent")==1){
+		code=code.concat('|');
+	        if(!lastRound || currRound!=lastRound){
+                    code=code.concat(currRound);
+		}
             }
 	    code=code.concat('|',song.mp3);
 	    if(song.lk){
