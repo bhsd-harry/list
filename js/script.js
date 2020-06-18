@@ -75,7 +75,6 @@ function initialSongList(){
 function generateCode(){
     let song=songs[$$("ddlSong")];
     let code='|';
-    let addition='';
     let exCombo=0;
     currCl=song.cl.toLowerCase();
     if($$("ddlEvent")=="1" || $$("ddlEvent")=="4"){
@@ -95,13 +94,7 @@ function generateCode(){
 		code=code.concat(song.cl);
 	    }
 	    if(song.cover){
-		if(song.cover.endsWith('.jpg')){
-		    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-		    code=code.concat('|',song.nm.replace('=',"{{=}}"),'||||');
-		}
-		else{
-		    code=code.concat('|',song.cover,'|||',song.nm.replace('=',"{{=}}"),'|');
-		}
+		code=code.concat('|',song.cover,'|||',song.nm.replace('=',"{{=}}"),'|');
 	    }
 	    else{
 		code=code.concat('|',song.nm.replace('=',"{{=}}"),'||||');
@@ -114,7 +107,6 @@ function generateCode(){
 	    if(song.lk){
 		code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
 	    }
-	    code=code.concat(addition);
 	    break;
 	case "1":
 	case "5":
@@ -130,13 +122,7 @@ function generateCode(){
                 code=code.concat(song.cl);
             }
             if(song.cover){
-                if(song.cover.endsWith('.jpg')){
-                    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-                    code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'|');
-                }
-                else{
-                    code=code.concat('|',song.cover,whitespace,'|',song.nm.replace('=',"{{=}}"));
-                }
+                code=code.concat('|',song.cover,whitespace,'|',song.nm.replace('=',"{{=}}"));
             }
             else{
                 code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'|');
@@ -151,20 +137,13 @@ function generateCode(){
 	    if(song.lk){
                 code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
             }
-            code=code.concat(addition);
             break;
 	case "4":
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
                 code=code.concat(song.cl);
             }
 	    if(song.cover){
-                if(song.cover.endsWith('.jpg')){
-                    addition=addition.concat('|cover',$$("txtOrder"),'=',song.cover);
-                    code=code.concat('|',song.nm.replace('=',"{{=}}"),'||');
-                }
-                else{
-                    code=code.concat('|',song.cover,'|',song.nm.replace('=',"{{=}}"),'|');
-                }
+                code=code.concat('|',song.cover,'|',song.nm.replace('=',"{{=}}"),'|');
             }
             else{
                 code=code.concat('|',song.nm.replace('=',"{{=}}"),'||');
@@ -194,7 +173,6 @@ function generateCode(){
             if(song.lk){
                 code=code.concat('|lk',$$("txtOrder"),'=',song.lk);
             }
-            code=code.concat(addition);
 	    break;
     }
     let tb=$("tbOutput");

@@ -179,7 +179,7 @@ function initSongPool(){
     initialSongAqours("smile","","Aqours☆HEROES","10","10","515","11","686","m 096.mp3");
     initialSongAqours("pure","Cd22a","Awaken the power","10","10","522","12","748","m 170.mp3");
     initialSongAqours("pure","","Beginner's Sailing","9","","551","12","961","m 176.mp3");
-    initialSongAqours("cool","","Believe again","9","","464","","","M 208.ogg");
+    initialSongAqours("cool","","Believe again","9","","464","12","820","M 208.ogg");
     initialSongAqours("cool","Braveheart Coaster.jpg","Braveheart Coaster","9","9","466","","","M 220.mp3");
     initialSongAqours("pure","","Brightest Melody","10","10","526","12","845","M 207.ogg");
     initialSongAqours("pure","","CHANGELESS","9","","364","","","M 251.mp3");
@@ -263,6 +263,7 @@ function initSongPool(){
     initialSongAqours("smile","決めたよHand In Hand","決めたよHand in Hand","10","11","569","12","805","m 118.mp3");
     initialSongAqours("pure","","海岸通りで待ってるよ","9","9","496","11","668","m 163.mp3");
     initialSongAqours("pure","","空も心も晴れるから","9","9","343","10","444","m 129.mp3");
+    initialSongAqours("smile","Kuuchuu Renai Ron","空中恋愛論","9","","329","","","");
     initialSongAqours("cool","","聖なる日の祈り","9","9","408","11","530","m 134.mp3");
     initialSongAqours("smile","Cd14a","近未来ハッピーエンド","9","10","576","12","900","m 152.mp3");
     initialSongAqours("smile","","逃走迷走メビウスループ","9","","497","11","695","M 205.ogg");
