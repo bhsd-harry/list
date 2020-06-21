@@ -422,6 +422,12 @@ function upload(){
 	    if(song_comment.length>1 && song_comment[1].trim()=="随机）"){
 		cf.push(1);
 	    }
+	    else if(song_comment.length>1 && song_comment[1].trim()=="滑键）"){
+		cf.push(2);
+	    }
+	    else if(song_comment.length>1 && song_comment[1].trim().toLowerCase()=="master）"){
+                cf.push(3);
+            }
 	    else{
 		cf.push(0);
 	    }
@@ -473,7 +479,14 @@ function upload(){
             $("ddlSong").selectedIndex=i;
 	    autoAdjustLvl();
 	    if($$("ddlEvent")=="4"){
-		$("ddlComment").selectedIndex=cf[0];
+		if(cf[0]<3){
+		    $("ddlComment").selectedIndex=cf[0];
+		    $("txtHigh").selectedIndex=3;
+		}
+		else{
+		    $("ddlComment").selectedIndex=0;
+		    $("txtHigh").selectedIndex=4;
+		}
 	    }
 	    generateCode();
         }
@@ -486,7 +499,14 @@ function upload(){
 	    if($$("btnUpload")=="没有这首歌曲"){exit();}
 	    let song=songs[$$("ddlSong")];
 	    if($$("ddlEvent")=="4"){
-		$("ddlComment").selectedIndex=cf[j];
+		if(cf[j]<3){
+		    $("ddlComment").selectedIndex=cf[j];
+		    $("txtHigh").selectedIndex=3;
+		}
+                else{
+                    $("ddlComment").selectedIndex=0;
+                    $("txtHigh").selectedIndex=4;
+                }
 	    }
 	    generateCode();
 	}
