@@ -36,9 +36,9 @@ function initialDisabling(){
 	    code=code.concat("cm|diff=easy,normal,hard,expert");
 	    break;
 	case "4":
-	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ckIfMaster");
-	    enabling("ddlRound","btnNextRound","ddlComment");
-	    $("ckIfMaster").checked=false;
+	    disabling("txtLow","btnBack1","btnBack2");
+	    enabling("txtHigh","ckIfMaster","ddlRound","btnNextRound","ddlComment");
+	    $("ckIfMaster").checked=true;
 	    code=code.concat("cf");
 	    generateRounds(4);
 	    break;
@@ -54,7 +54,12 @@ function initialDisabling(){
     clearTable();
     adjustLvl();
     if($("ckIfMaster").checked){
-        code=code.concat(",master");
+        if($$("ddlEvent")=="4"){
+	    code=code.concat("|diff=master");
+	}
+	else{
+	    code=code.concat(",master");
+	}
     }
     let tb=$("tbOutput");
     tb.rows[0].innerHTML=code;
@@ -115,7 +120,7 @@ function generateCode(){
 		whitespace=whitespace.concat($("txtLow").selectedIndex);
 	    }
 	    whitespace=whitespace.concat('|');
-	    if(getInt("txtHigh")<4+($$("ddlEvent")==1)+$("ckIfMaster").checked){
+	    if(getInt("txtHigh")<4+($$("ddlEvent")=="1")+$("ckIfMaster").checked){
 		whitespace=whitespace.concat($$("txtHigh"));
 	    }
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
@@ -127,7 +132,7 @@ function generateCode(){
             else{
                 code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'|');
             }
-	    if($$("ddlEvent")==1){
+	    if($$("ddlEvent")=="1"){
 		code=code.concat('|');
 	        if(!lastRound || currRound!=lastRound){
                     code=code.concat(currRound);
@@ -151,6 +156,9 @@ function generateCode(){
 	    if(song.daily){
 		code=code.concat("日替|");
 	    }
+	    else if(getInt("txtHigh")==6){
+		code=code.concat("MASTER|");
+	    }
 	    else{
 		code=code.concat($$("ddlComment"),'|');
 	    }
@@ -158,14 +166,33 @@ function generateCode(){
 		code=code.concat(lvl[getInt("txtOrder")-1]);
 	    }
 	    else{
-	        if(!song.daily && $$("ddlComment")=="随机"){
+		if($$("txtHigh")==6){
+		    code=code.concat(song.maLevel);
+		}
+	        else if(!song.daily && $$("ddlComment")=="随机"){
 		    code=code.concat(song.exLevel2);
 	        }
+                else if(!song.daily && $$("ddlComment")=="滑键"){
+                    code=code.concat(song.exLevel3);
+                }
 	        else{
 		    code=code.concat(song.exLevel1);
 		}
 	    }
-	    code=code.concat('|',exCombo,'|');
+	    if(!$("ckIfMaster").checked){
+		code=code.concat('|',exCombo,'|');
+	    }
+	    else{
+		if($$("txtHigh")==6){
+		    code=code.concat('|',song.maCombo,'|',song.weightMa,'|');
+		}
+		else if($$("ddlComment")=="滑键"){
+		    code=code.concat('|',song.exPlusCombo,'|',song.weightExPlus,'|');
+		}
+		else{
+		    code=code.concat('|',exCombo,'|',song.weightEx,'|');
+		}
+	    }
 	    if(!lastRound || currRound!=lastRound){
                 code=code.concat(currRound);
             }
@@ -221,6 +248,7 @@ function nextRow(){
 	    initialSongList();
 	    $("ddlSong").selectedIndex=i;
 	    autoAdjustLvl();
+	    if(lastCl!="smile" && songs[i].cl=="smile"){nextRound();}
 	}
 	else{
 	    $("btnUpload").value="没有这首歌曲";
@@ -232,10 +260,20 @@ function ifMaster(){
     let tb=$("tbOutput");
     let startRow=tb.rows[0];
     if($("ckIfMaster").checked){
-	startRow.innerHTML=startRow.innerHTML.concat(",master");
+	if($$("ddlEvent")=="4"){
+	    startRow.innerHTML=startRow.innerHTML.concat("|diff=master");
+	}
+	else{
+	    startRow.innerHTML=startRow.innerHTML.concat(",master");
+	}
     }
     else{
-	startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
+	if($$("ddlEvent")=="4"){
+	    startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-12);
+	}
+	else{
+	    startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
+	}
     }
     adjustLvl();
 }
@@ -288,7 +326,7 @@ function adjustHigh(){
 function adjustLvl(){
     let low=$("txtLow");
     let high=$("txtHigh");
-    if($$("ddlEvent")==1){
+    if($$("ddlEvent")=="1"){
 	if(low.length<5){
 	    low.options.add(new Option("TECHNICAL",5));
 	}

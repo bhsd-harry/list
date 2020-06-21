@@ -17,7 +17,7 @@ function initialData(){
 //    window.localStorage.setItem("songs",JSON.stringify(songs));
 }
 
-function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily){
+function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily,exLevel3,exPlusCombo){
     let model={
 	id:id,
 	cl:cl,
@@ -25,7 +25,9 @@ function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,m
 	nm:nm,
 	exLevel1:exLevel1,
 	exLevel2:exLevel2,
+	exLevel3:exLevel3,
 	exCombo:exCombo,
+	exPlusCombo:exPlusCombo,
 	maLevel:maLevel,
 	maCombo:maCombo,
 	mp3:mp3,
@@ -33,11 +35,20 @@ function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,m
 	daily:daily,
 	group:1
     }
+    let i=0;
+    for(;i<weight.length;i++){
+	if(weight[i].songname.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase() == nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()) {break;}
+    }
+    if(i<weight.length){
+	model.weightEx=weight[i].songweightEX;
+	model.weightMa=weight[i].songweightMA;
+	model.weightExPlus=weight[i].songweightEXPlus;
+    }
     songs[id]=model;
     id++;
 }
 
-function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily){
+function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily,exLevel3,exPlusCombo){
     let model={
 	id:id,
         cl:cl,
@@ -45,13 +56,24 @@ function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo
         nm:nm,
         exLevel1:exLevel1,
         exLevel2:exLevel2,
+	exLevel3:exLevel3,
         exCombo:exCombo,
+	exPlusCombo:exPlusCombo,
         maLevel:maLevel,
         maCombo:maCombo,
         mp3:mp3,
         lk:lk,
 	daily:daily,
         group:2
+    }
+    let i=0;
+    for(;i<weight.length;i++){
+        if(weight[i].songname.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase() == nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()) {break;}
+    }
+    if(i<weight.length){
+        model.weightEx=weight[i].songweightEX;
+        model.weightMa=weight[i].songweightMA;
+        model.weightExPlus=weight[i].songweightEXPlus;
     }
     songs[id]=model;
     id++;
@@ -61,7 +83,7 @@ function initSongPool(){
     initialSongMuse("cool","？←HEARTBEAT","?←HEARTBEAT","9","9","424","12","623","m 126.mp3");
     initialSongMuse("smile","A song for You! You? You!! cover preview.jpg","A song for You! You? You!!","10","9","497","12","865","M 257.mp3");
     initialSongMuse("pure","","after school NAVIGATORS","9","10","492","12","732","m 026.mp3");
-    initialSongMuse("smile","","Angelic Angel","9","10","577","11","831","m 080.mp3");
+    initialSongMuse("smile","","Angelic Angel","9","10","577","11","831","m 080.mp3","","","10","602");
     initialSongMuse("pure","LL2ndsingleB.jpg","baby maybe 恋のボタン","9","9","362","11","681","m 004.mp3");
     initialSongMuse("smile","Lovelive 2nd qj printemps.jpg","CheerDay CheerGirl!","9","10","480","11","671","m 135.mp3");
     initialSongMuse("smile","","COLORFUL VOICE","10","10","564","11","877","m 074.mp3");
@@ -95,7 +117,7 @@ function initSongPool(){
     initialSongMuse("cool","Jacket Lovelive shangrilashower.jpg","Shangri-La Shower","9","9","459","10","688","m 106.mp3");
     initialSongMuse("cool","","Shocking Party","9","9","324","10","447","m 090.mp3");
     initialSongMuse("pure","119157 BDf5q.jpg","Silent tonight","9","9","322","10","452","m 139.mp3");
-    initialSongMuse("cool","LL2ndsingle","Snow halation","9","9","355","11","551","m 003.mp3");
+    initialSongMuse("cool","LL2ndsingle","Snow halation","9","9","355","11","551","m 003.mp3","","","10","424");
     initialSongMuse("smile","Someday of my lifesif","Someday of my life","9","9","479","11","645","m 052.mp3");
     initialSongMuse("smile","START-DASH!!","START:DASH!!","10","10","495","11","695","m 025.mp3");
     initialSongMuse("cool","","Storm in Lover","10","10","494","11","678","m 099.mp3");
@@ -184,6 +206,7 @@ function initSongPool(){
     initialSongAqours("pure","","Brightest Melody","10","10","526","12","845","M 207.ogg");
     initialSongAqours("pure","","CHANGELESS","9","","364","","","M 251.mp3");
     initialSongAqours("smile","","CRASH MIND","9","","420","11","616","m 186.mp3");
+    initialSongAqours("pure","","Dance with Minotaurus","10","10","515","12","787","m 249.ogg");
     initialSongAqours("cool","","Daydream Warrior","9","10","464","12","716","m 143.mp3");
     initialSongAqours("cool","","Deep Resonance","10","","537","","","M 216.ogg");
     initialSongAqours("cool","DROPOUT","DROPOUT!?","10","10","484","12","788","m 187.mp3");
@@ -245,9 +268,9 @@ function initSongPool(){
     initialSongAqours("smile","","僕らの走ってきた道は…","10","10","417","12","722","M 203.ogg");
     initialSongAqours("smile","Llss cyaron cd01 cover.jpg","元気全開DAY!DAY!DAY!","10","10","592","12","749","m 112.mp3");
     initialSongAqours("pure","","冒険Type A, B, C!!","9","","480","","","M 214.ogg");
-    initialSongAqours("smile","Cd20a","勇気はどこに？君の胸に！","9","10","402","12","634","m 167.mp3");
+    initialSongAqours("smile","Cd20a","勇気はどこに？君の胸に！","9","10","402","12","634","m 167.mp3","","","10","431");
     initialSongAqours("cool","卒業ですね - AZALEA","卒業ですね","9","9","303","","","M 210.ogg");
-    initialSongAqours("pure","Kimi no Kokoro wa Kagayaiteru kai Cover002.jpg","君のこころは輝いてるかい？","9","10","497","12","694","m 087.mp3");
+    initialSongAqours("pure","Kimi no Kokoro wa Kagayaiteru kai Cover002.jpg","君のこころは輝いてるかい？","9","10","497","12","694","m 087.mp3","","","10","509");
     initialSongAqours("cool","","君の瞳を巡る冒険","9","9","458","11","608","m 180.mp3");
     initialSongAqours("pure","","夜空はなんでも知ってるの？","9","9","415","11","568","m 113.mp3");
     initialSongAqours("pure","","夢で夜空を照らしたい","9","9","393","10","539","m 122.mp3");
