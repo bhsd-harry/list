@@ -485,7 +485,6 @@ function upload(){
 	    nextRow();
 	    if($$("btnUpload")=="没有这首歌曲"){exit();}
 	    let song=songs[$$("ddlSong")];
-	    if(lastCl!="smile" && song.cl=="smile"){nextRound();}
 	    if($$("ddlEvent")=="4"){
 		$("ddlComment").selectedIndex=cf[j];
 	    }
@@ -508,16 +507,4 @@ function autoAdjustLvl(){
 	    $("txtHigh").selectedIndex=4+$("ckIfMaster").checked;
 	}
     }
-}
-
-function changeIfManual(){
-    $("ckIfManual").checked=!($("ckIfManual").checked);
-}
-
-function changeIfLvl(){
-    $("ckIfLvl").checked=!($("ckIfLvl").checked);
-}
-
-function changeIfCombo(){
-    $("ckIfCombo").checked=!($("ckIfCombo").checked);
 }
