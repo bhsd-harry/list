@@ -200,7 +200,7 @@ function initSongPool(){
     initialSongAqours("pure","Amazing Travel DNA.jpg","Amazing Travel DNA","9","10","443","","","M 221.mp3");
     initialSongAqours("smile","","Aqours☆HEROES","10","10","515","11","686","m 096.mp3");
     initialSongAqours("pure","Cd22a","Awaken the power","10","10","522","12","748","m 170.mp3");
-    initialSongAqours("pure","","Beginner's Sailing","9","","551","12","961","m 176.mp3");
+    initialSongAqours("pure","","Beginner's Sailing","9","10","551","12","961","m 176.mp3");
     initialSongAqours("cool","","Believe again","9","","464","12","820","M 208.ogg");
     initialSongAqours("cool","Braveheart Coaster.jpg","Braveheart Coaster","9","9","466","","","M 220.mp3");
     initialSongAqours("pure","","Brightest Melody","10","10","526","12","845","M 207.ogg");
