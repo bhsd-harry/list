@@ -251,8 +251,12 @@ function nextRow(){
 	    if(lastCl!="smile" && songs[i].cl=="smile"){nextRound();}
 	}
 	else{
-	    $("btnUpload").value="没有这首歌曲";
+	    alert("没有这首歌曲");
+	    exit;
 	}
+    }
+    else{
+	alert("超过上传的歌曲数");
     }
 }
 
@@ -450,11 +454,12 @@ function upload(){
         }
     };
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
+    alert(`已上传${arr.length}首歌曲`);
     disabling("btnUpload");
     if(arr.length>=getInt("txtOrder") && $("ckIfManual").checked){
 	let i=0;
         for(;i<songs.length;i++){
-            if(songs[i].nm==arr[getInt("txtOrder")-1]){break;}
+            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()==arr[getInt("txtOrder")-1].replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()){break;}
         }
         if(i<songs.length){
             $("ddlGroup").selectedIndex=0;
@@ -462,6 +467,10 @@ function upload(){
             initialSongList();
             $("ddlSong").selectedIndex=i;
         }
+	else{
+	    alert("没有这首歌曲");
+	    exit;
+	}
     }
     if(arr.length>0 && $("ckIfManual").checked==false){
 	clearTable();
@@ -491,12 +500,12 @@ function upload(){
 	    generateCode();
         }
 	else{
-	    $("btnUpload").value="没有这首歌曲";
+	    alert("没有这首歌曲");
 	    exit();
 	}
 	for(let j=1;j<arr.length;j++){
 	    nextRow();
-	    if($$("btnUpload")=="没有这首歌曲"){exit();}
+//	    if($$("btnUpload")=="没有这首歌曲"){exit();}
 	    let song=songs[$$("ddlSong")];
 	    if($$("ddlEvent")=="4"){
 		if(cf[j]<3){
