@@ -227,7 +227,7 @@ function initSongPool(){
     initialSongAqours("pure","Marine Border Parasol cover.jpg","Marine Border Parasol","9","9","464","11","709","m 201.ogg");
     initialSongAqours("smile","","MIRACLE WAVE","10","10","455","12","801","m 169.mp3");
     initialSongAqours("smile","","MIRAI TICKET","10","10","536","12","792","m 128.mp3");
-    initialSongAqours("cool","","MY舞☆TONIGHT","10","11","464","12","696","m 168.mp3");
+    initialSongAqours("cool","MY舞☆TONIGHT_1","MY舞☆TONIGHT","10","11","464","12","696","m 168.mp3");
     initialSongAqours("smile","New Romantic Sailors.jpg","New Romantic Sailors","10","","529","","","M 219.mp3");
     initialSongAqours("smile","","New winding road","9","9","387","11","538","m 178.mp3");
     initialSongAqours("cool","","Next SPARKLING!!","9","9","482","11","644","M 204.ogg");
