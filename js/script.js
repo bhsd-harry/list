@@ -410,6 +410,7 @@ function upload(){
     cf=[];
     lvl=[];
     combo=[];
+    alertFlag=0;
     let lines=$$("txtTable").split('\n');
     for(let k=0;k<lines.length;k++){
 	let item=lines[k].replace(/^(封面|活动|第|属性|阅读|本文|折叠).*/g,'');
