@@ -208,7 +208,7 @@ function initSongPool(){
     initialSongAqours("smile","","CRASH MIND","9","","420","11","616","m 186.mp3");
     initialSongAqours("pure","","Dance with Minotaurus","10","10","515","12","787","m 249.ogg");
     initialSongAqours("cool","","Daydream Warrior","9","10","464","12","716","m 143.mp3");
-    initialSongAqours("cool","","Deep Resonance","10","","537","","","M 216.ogg");
+    initialSongAqours("cool","","Deep Resonance","10","","537","12","820","M 216.ogg");
     initialSongAqours("cool","DROPOUT","DROPOUT!?","10","10","484","12","788","m 187.mp3");
     initialSongAqours("smile","AZALEA2NDSINGLE.jpg","GALAXY HidE and SeeK","9","9","419","11","626","m 155.mp3");
     initialSongAqours("smile","","Guilty Eyes Fever","9","9","426","11","573","m 162.mp3");
@@ -235,6 +235,7 @@ function initSongPool(){
     initialSongAqours("smile","","One More Sunshine Story","9","","466","11","653","m 173.mp3");
     initialSongAqours("smile","OverTheNextRainbow","Over The Next Rainbow","9","9","298","11","500","m_209.ogg");
     initialSongAqours("pure","","P.S.の向こう側","9","9","487","11","612","m 160.ogg");
+    initialSongAqours("pure","","Phantom Rocket Adventure","10","","392","","","M 253.mp3");
     initialSongAqours("cool","","Pianoforte Monologue","9","9","387","10","538","m 181.mp3");
     initialSongAqours("smile","Pops heartで踊るんだもん","Pops heartで踊るんだもん！","10","10","532","11","668","m 125.mp3");
     initialSongAqours("pure","","RED GEM WINK","9","9","434","11","644","m 177.mp3");
@@ -286,7 +287,7 @@ function initSongPool(){
     initialSongAqours("smile","決めたよHand In Hand","決めたよHand in Hand","10","11","569","12","805","m 118.mp3");
     initialSongAqours("pure","","海岸通りで待ってるよ","9","9","496","11","668","m 163.mp3");
     initialSongAqours("pure","","空も心も晴れるから","9","9","343","10","444","m 129.mp3");
-    initialSongAqours("smile","Kuuchuu Renai Ron","空中恋愛論","9","","329","","","");
+    initialSongAqours("smile","Kuuchuu Renai Ron","空中恋愛論","9","","329","","","M 252.mp3");
     initialSongAqours("cool","","聖なる日の祈り","9","9","408","11","530","m 134.mp3");
     initialSongAqours("smile","Cd14a","近未来ハッピーエンド","9","10","576","12","900","m 152.mp3");
     initialSongAqours("smile","","逃走迷走メビウスループ","9","","497","11","695","M 205.ogg");

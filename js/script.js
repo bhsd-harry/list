@@ -256,7 +256,10 @@ function nextRow(){
 	}
     }
     else{
-	alert("超过上传的歌曲数");
+	if(alertFlag==0){
+	    alert("超过上传的歌曲数");
+	    alertFlag=1;
+	}
     }
 }
 
