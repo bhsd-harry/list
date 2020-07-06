@@ -106,7 +106,7 @@ function generateCode(){
 	    }
 	    code=code.concat(exCombo,'|');
 	    if($("ckIfMaster").checked){
-		code=code.concat(song.maCombo,'||');
+		code=code.concat(song.maCombo,'|',song.weightMa,'|');
 	    }
 	    code=code.concat(song.mp3);
 	    if(song.lk){
