@@ -36,9 +36,9 @@ function initialDisabling(){
 	    code=code.concat("cm|diff=easy,normal,hard,expert");
 	    break;
 	case "4":
-	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ckIfMaster");
-	    enabling("ddlRound","btnNextRound","ddlComment");
-	    $("ckIfMaster").checked=false;
+	    disabling("txtLow","btnBack1","btnBack2");
+	    enabling("txtHigh","ckIfMaster","ddlRound","btnNextRound","ddlComment");
+	    $("ckIfMaster").checked=true;
 	    code=code.concat("cf");
 	    generateRounds(4);
 	    break;
@@ -54,7 +54,12 @@ function initialDisabling(){
     clearTable();
     adjustLvl();
     if($("ckIfMaster").checked){
-        code=code.concat(",master");
+        if($$("ddlEvent")=="4"){
+	    code=code.concat("|diff=master");
+	}
+	else{
+	    code=code.concat(",master");
+	}
     }
     let tb=$("tbOutput");
     tb.rows[0].innerHTML=code;
@@ -101,7 +106,7 @@ function generateCode(){
 	    }
 	    code=code.concat(exCombo,'|');
 	    if($("ckIfMaster").checked){
-		code=code.concat(song.maCombo,'||');
+		code=code.concat(song.maCombo,'|',song.weightMa,'|');
 	    }
 	    code=code.concat(song.mp3);
 	    if(song.lk){
@@ -115,7 +120,7 @@ function generateCode(){
 		whitespace=whitespace.concat($("txtLow").selectedIndex);
 	    }
 	    whitespace=whitespace.concat('|');
-	    if(getInt("txtHigh")<4+($$("ddlEvent")==1)+$("ckIfMaster").checked){
+	    if(getInt("txtHigh")<4+($$("ddlEvent")=="1")+$("ckIfMaster").checked){
 		whitespace=whitespace.concat($$("txtHigh"));
 	    }
 	    if(($("ckIsFirst").disabled==false && $("ckIsFirst").checked) || (lastCl && currCl!=lastCl)){
@@ -127,7 +132,7 @@ function generateCode(){
             else{
                 code=code.concat('|',song.nm.replace('=',"{{=}}"),whitespace,'|');
             }
-	    if($$("ddlEvent")==1){
+	    if($$("ddlEvent")=="1"){
 		code=code.concat('|');
 	        if(!lastRound || currRound!=lastRound){
                     code=code.concat(currRound);
@@ -151,6 +156,9 @@ function generateCode(){
 	    if(song.daily){
 		code=code.concat("日替|");
 	    }
+	    else if(getInt("txtHigh")==6){
+		code=code.concat("MASTER|");
+	    }
 	    else{
 		code=code.concat($$("ddlComment"),'|');
 	    }
@@ -158,14 +166,33 @@ function generateCode(){
 		code=code.concat(lvl[getInt("txtOrder")-1]);
 	    }
 	    else{
-	        if(!song.daily && $$("ddlComment")=="随机"){
+		if($$("txtHigh")==6){
+		    code=code.concat(song.maLevel);
+		}
+	        else if(!song.daily && $$("ddlComment")=="随机"){
 		    code=code.concat(song.exLevel2);
 	        }
+                else if(!song.daily && $$("ddlComment")=="滑键"){
+                    code=code.concat(song.exLevel3);
+                }
 	        else{
 		    code=code.concat(song.exLevel1);
 		}
 	    }
-	    code=code.concat('|',exCombo,'|');
+	    if(!$("ckIfMaster").checked){
+		code=code.concat('|',exCombo,'|');
+	    }
+	    else{
+		if($$("txtHigh")==6){
+		    code=code.concat('|',song.maCombo,'|',song.weightMa,'|');
+		}
+		else if($$("ddlComment")=="滑键"){
+		    code=code.concat('|',song.exPlusCombo,'|',song.weightExPlus,'|');
+		}
+		else{
+		    code=code.concat('|',exCombo,'|',song.weightEx,'|');
+		}
+	    }
 	    if(!lastRound || currRound!=lastRound){
                 code=code.concat(currRound);
             }
@@ -221,9 +248,17 @@ function nextRow(){
 	    initialSongList();
 	    $("ddlSong").selectedIndex=i;
 	    autoAdjustLvl();
+	    if(lastCl!="smile" && songs[i].cl=="smile"){nextRound();}
 	}
 	else{
-	    $("btnUpload").value="没有这首歌曲";
+	    alert("没有这首歌曲");
+	    exit;
+	}
+    }
+    else{
+	if(alertFlag==0){
+	    alert("超过上传的歌曲数");
+	    alertFlag=1;
 	}
     }
 }
@@ -232,10 +267,20 @@ function ifMaster(){
     let tb=$("tbOutput");
     let startRow=tb.rows[0];
     if($("ckIfMaster").checked){
-	startRow.innerHTML=startRow.innerHTML.concat(",master");
+	if($$("ddlEvent")=="4"){
+	    startRow.innerHTML=startRow.innerHTML.concat("|diff=master");
+	}
+	else{
+	    startRow.innerHTML=startRow.innerHTML.concat(",master");
+	}
     }
     else{
-	startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
+	if($$("ddlEvent")=="4"){
+	    startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-12);
+	}
+	else{
+	    startRow.innerHTML=startRow.innerHTML.substring(0,startRow.innerHTML.length-7);
+	}
     }
     adjustLvl();
 }
@@ -288,7 +333,7 @@ function adjustHigh(){
 function adjustLvl(){
     let low=$("txtLow");
     let high=$("txtHigh");
-    if($$("ddlEvent")==1){
+    if($$("ddlEvent")=="1"){
 	if(low.length<5){
 	    low.options.add(new Option("TECHNICAL",5));
 	}
@@ -365,6 +410,7 @@ function upload(){
     cf=[];
     lvl=[];
     combo=[];
+    alertFlag=0;
     let lines=$$("txtTable").split('\n');
     for(let k=0;k<lines.length;k++){
 	let item=lines[k].replace(/^(封面|活动|第|属性|阅读|本文|折叠).*/g,'');
@@ -384,6 +430,12 @@ function upload(){
 	    if(song_comment.length>1 && song_comment[1].trim()=="随机）"){
 		cf.push(1);
 	    }
+	    else if(song_comment.length>1 && song_comment[1].trim()=="滑键）"){
+		cf.push(2);
+	    }
+	    else if(song_comment.length>1 && song_comment[1].trim().toLowerCase()=="master）"){
+                cf.push(3);
+            }
 	    else{
 		cf.push(0);
 	    }
@@ -406,11 +458,12 @@ function upload(){
         }
     };
     $("btnUpload").value=`已上传${arr.length}首歌曲`;
+    alert(`已上传${arr.length}首歌曲`);
     disabling("btnUpload");
     if(arr.length>=getInt("txtOrder") && $("ckIfManual").checked){
 	let i=0;
         for(;i<songs.length;i++){
-            if(songs[i].nm==arr[getInt("txtOrder")-1]){break;}
+            if(songs[i].nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()==arr[getInt("txtOrder")-1].replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()){break;}
         }
         if(i<songs.length){
             $("ddlGroup").selectedIndex=0;
@@ -418,6 +471,10 @@ function upload(){
             initialSongList();
             $("ddlSong").selectedIndex=i;
         }
+	else{
+	    alert("没有这首歌曲");
+	    exit;
+	}
     }
     if(arr.length>0 && $("ckIfManual").checked==false){
 	clearTable();
@@ -435,21 +492,34 @@ function upload(){
             $("ddlSong").selectedIndex=i;
 	    autoAdjustLvl();
 	    if($$("ddlEvent")=="4"){
-		$("ddlComment").selectedIndex=cf[0];
+		if(cf[0]<3){
+		    $("ddlComment").selectedIndex=cf[0];
+		    $("txtHigh").selectedIndex=3;
+		}
+		else{
+		    $("ddlComment").selectedIndex=0;
+		    $("txtHigh").selectedIndex=4;
+		}
 	    }
 	    generateCode();
         }
 	else{
-	    $("btnUpload").value="没有这首歌曲";
+	    alert("没有这首歌曲");
 	    exit();
 	}
 	for(let j=1;j<arr.length;j++){
 	    nextRow();
-	    if($$("btnUpload")=="没有这首歌曲"){exit();}
+//	    if($$("btnUpload")=="没有这首歌曲"){exit();}
 	    let song=songs[$$("ddlSong")];
-	    if(lastCl!="smile" && song.cl=="smile"){nextRound();}
 	    if($$("ddlEvent")=="4"){
-		$("ddlComment").selectedIndex=cf[j];
+		if(cf[j]<3){
+		    $("ddlComment").selectedIndex=cf[j];
+		    $("txtHigh").selectedIndex=3;
+		}
+                else{
+                    $("ddlComment").selectedIndex=0;
+                    $("txtHigh").selectedIndex=4;
+                }
 	    }
 	    generateCode();
 	}
@@ -470,16 +540,4 @@ function autoAdjustLvl(){
 	    $("txtHigh").selectedIndex=4+$("ckIfMaster").checked;
 	}
     }
-}
-
-function changeIfManual(){
-    $("ckIfManual").checked=!($("ckIfManual").checked);
-}
-
-function changeIfLvl(){
-    $("ckIfLvl").checked=!($("ckIfLvl").checked);
-}
-
-function changeIfCombo(){
-    $("ckIfCombo").checked=!($("ckIfCombo").checked);
 }
