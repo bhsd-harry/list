@@ -1,81 +1,81 @@
 "use strict";
-var songs=[];
-var id=0;
+var songs = [];
+var id = 0;
 
-function initialData(){
-/*
-    let songStorage=window.localStorage.getItem("songs");
-    if(songStorage){
-	songStorage=JSON.parse(songStorage);
-	if(songStorage instanceof Array && songStorage.length>0){
-	    songs=songStorage;
-	    return;
-	}
-    }
-*/
+function initialData() {
+    /*
+        let songStorage=window.localStorage.getItem("songs");
+        if(songStorage){
+    	songStorage=JSON.parse(songStorage);
+    	if(songStorage instanceof Array && songStorage.length>0){
+    	    songs=songStorage;
+    	    return;
+    	}
+        }
+    */
     initSongPool();
-//    window.localStorage.setItem("songs",JSON.stringify(songs));
+    //    window.localStorage.setItem("songs",JSON.stringify(songs));
 }
 
-function initialSongMuse(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily,exLevel3,exPlusCombo){
-    let model={
-	id:id,
-	cl:cl,
-	cover:cover,
-	nm:nm,
-	exLevel1:exLevel1,
-	exLevel2:exLevel2,
-	exLevel3:exLevel3,
-	exCombo:exCombo,
-	exPlusCombo:exPlusCombo,
-	maLevel:maLevel,
-	maCombo:maCombo,
-	mp3:mp3,
-	lk:lk,
-	daily:daily,
-	group:1
+function initialSongMuse(cl, cover, nm, exLevel1, exLevel2, exCombo, maLevel, maCombo, mp3, lk, daily, exLevel3, exPlusCombo) {
+    let model = {
+        id: id,
+        cl: cl,
+        cover: cover,
+        nm: nm,
+        exLevel1: exLevel1,
+        exLevel2: exLevel2,
+        exLevel3: exLevel3,
+        exCombo: exCombo,
+        exPlusCombo: exPlusCombo,
+        maLevel: maLevel,
+        maCombo: maCombo,
+        mp3: mp3,
+        lk: lk,
+        daily: daily,
+        group: 1
     }
-    let i=0;
-    for(;i<weight.length;i++){
-	if(weight[i].songname.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase() == nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()) {break;}
+    let i = 0;
+    for (; i < weight.length; i++) {
+        if (weight[i].songname.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g, '').toLowerCase() == nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g, '').toLowerCase()) { break; }
     }
-    if(i<weight.length){
-	model.weightEx=weight[i].songweightEX;
-	model.weightMa=weight[i].songweightMA;
-	model.weightExPlus=weight[i].songweightEXPlus;
+    if (i < weight.length) {
+        model.weightEx = weight[i].songweightEX;
+        model.weightMa = weight[i].songweightMA;
+        model.weightExPlus = weight[i].songweightEXPlus;
     }
-    songs[id]=model;
+    songs[id] = model;
     id++;
 }
 
-function initialSongAqours(cl,cover,nm,exLevel1,exLevel2,exCombo,maLevel,maCombo,mp3,lk,daily,exLevel3,exPlusCombo){
-    let model={
-	id:id,
-        cl:cl,
-        cover:cover,
-        nm:nm,
-        exLevel1:exLevel1,
-        exLevel2:exLevel2,
-	exLevel3:exLevel3,
-        exCombo:exCombo,
-	exPlusCombo:exPlusCombo,
-        maLevel:maLevel,
-        maCombo:maCombo,
-        mp3:mp3,
-        lk:lk,
-	daily:daily,
-        group:2
+function initialSongAqours(cl, cover, nm, exLevel1, exLevel2, exCombo, maLevel, maCombo, mp3, lk, daily, exLevel3, exPlusCombo) {
+    let model = {
+        id: id,
+        cl: cl,
+        cover: cover,
+        nm: nm,
+        exLevel1: exLevel1,
+        exLevel2: exLevel2,
+        exLevel3: exLevel3,
+        exCombo: exCombo,
+        exPlusCombo: exPlusCombo,
+        maLevel: maLevel,
+        maCombo: maCombo,
+        mp3: mp3,
+        lk: lk,
+        daily: daily,
+        group: 2
     }
-    let i=0;
-    for(;i<weight.length;i++){
-        if(weight[i].songname.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase() == nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g,'').toLowerCase()) {break;}
+    let i = 0;
+    for (; i < weight.length; i++) {
+        if (weight[i].songname.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g, '').toLowerCase() == nm.replace(/(!|\?|！|？|"|“|”|♡|♥|\*|＊|'|‘|’| |☆|・|。)/g, '').toLowerCase()) { break; }
     }
-    if(i<weight.length){
-        model.weightEx=weight[i].songweightEX;
-        model.weightMa=weight[i].songweightMA;
-        model.weightExPlus=weight[i].songweightEXPlus;
+    if (i < weight.length) {
+        model.weightEx = weight[i].songweightEX;
+        model.weightMa = weight[i].songweightMA;
+        model.weightExPlus = weight[i].songweightEXPlus;
     }
-    songs[id]=model;
+    songs[id] = model;
     id++;
 }
 
