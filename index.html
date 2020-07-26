@@ -90,6 +90,7 @@
 		    <select id="ddlComment">
 			<option value="">无</option>
 			<option value="随机">随机</option>
+			<option value="滑键">滑键</option>
 		    </select>
 		</td>
 		<td>
@@ -104,11 +105,11 @@
 	<input type="button" value="清空歌曲列表" id="btnClear" onclick="clearTable()"/><br /><br /><br />
 	<span>歌曲名称所在列</span>
 	<input type="number" id="txtCol" value="1" /><br />
-	<label for="ckIfLvl" onclick="changeIfLvl">
+	<label for="ckIfLvl">
 	    <input type="checkbox" id="ckIfLvl" /> 歌曲难度所在列
 	</label>
 	<input type="number" id="txtColLvl" value="2" /><br />
-	<label for="ckIfCombo" onclick="changeIfCombo()">
+	<label for="ckIfCombo">
 	    <input type="checkbox" id="ckIfCombo" /> 歌曲Combo所在列
         </label>
         <input type="number" id="txtColCombo" value="3" /><br />
@@ -130,6 +131,7 @@
 <script src="js/script.js"></script>
 <script src="js/common.js"></script>
 <script src="js/data.js"></script>
+<script src="js/weight_data.js"></script>
 <script>
     "use strict";
     initialData();
@@ -137,4 +139,5 @@
     initialDisabling();
 
     var outputArr=[];
+    var alertFlag=1;
 </script>
