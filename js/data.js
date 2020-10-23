@@ -190,9 +190,9 @@ function initSongPool() {
     initialSongMuse("cool", "Anemone heartsif", "Anemone heart", "11", "", "532", "12", "648", "m 045.mp3", "", true);
     initialSongMuse("cool", "", "Beat in Angel", "11", "", "598", "12", "851", "m 049.mp3", "", true);
     initialSongMuse("smile", "LLMFV2.jpg", "Mermaid festa vol.2 ~Passionate~", "11", "", "584", "12", "803", "m 016.mp3", "", true);
-    initialSongMuse("cool", "Soldier game cover.jpg", "Soldier game", "11", "", "563", "12", "696", "m 019.mp3", "", true);
+    initialSongMuse("cool", "Soldier game cover.jpg", "soldier game", "11", "", "563", "12", "696", "m 019.mp3", "", true);
     initialSongMuse("pure", "", "なわとび", "9", "", "363", "11", "442", "m 047.mp3", "", true);
-    initialSongMuse("smile", "にこぷり♡女子道", "にこぷり♥女子道", "11", "", "650", "12", "1061", "m 050.mp3", "", true);
+    initialSongMuse("smile", "にこぷり♡女子道", "にこぷり♡女子道", "11", "", "650", "12", "1061", "m 050.mp3", "", true);
     initialSongMuse("pure", "LLOtomeShikiCover.jpg", "乙女式れんあい塾", "11", "", "553", "12", "809", "m 017.mp3", "", true);
     initialSongMuse("pure", "Jacket lovelive kokuhaku.jpg", "告白日和、です！", "11", "", "579", "12", "823", "m 018.mp3", "", true);
     initialSongMuse("smile", "", "夢なき夢は夢じゃない", "11", "", "612", "12", "873", "m 044.mp3", "", true);
