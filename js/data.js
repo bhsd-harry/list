@@ -80,7 +80,7 @@ function initialSongAqours(cl, cover, nm, exLevel1, exLevel2, exCombo, maLevel, 
 }
 
 function initSongPool() {
-    initialSongMuse("cool", "？←HEARTBEAT", "?←HEARTBEAT", "9", "9", "424", "12", "623", "m 126.mp3");
+    initialSongMuse("cool", "", "？←HEARTBEAT", "9", "9", "424", "12", "623", "m 126.mp3");
     initialSongMuse("smile", "A song for You! You? You!! cover preview.jpg", "A song for You! You? You!!", "10", "9", "497", "12", "865", "M 257.mp3");
     initialSongMuse("pure", "", "after school NAVIGATORS", "9", "10", "492", "12", "732", "m 026.mp3");
     initialSongMuse("smile", "", "Angelic Angel", "9", "10", "577", "11", "831", "m 080.mp3", "", "", "10", "602");
@@ -131,7 +131,7 @@ function initSongPool() {
     initialSongMuse("pure", "", "Wonder zone", "10", "10", "490", "11", "654", "m 031.mp3");
     initialSongMuse("cool", "LL5thsingle.jpg", "Wonderful Rush", "9", "9", "386", "11", "616", "m 009.mp3");
     initialSongMuse("cool", "", "ありふれた悲しみの果て", "9", "10", "358", "11", "439", "m 054.mp3");
-    initialSongMuse("cool", "あ・の・ね・が・ん・ば・れ！", "あ・の・ね・が・ん・ば・れ！", "9", "10", "431", "11", "608", "m 028.mp3", "所以说请加油吧");
+    initialSongMuse("cool", "", "あ・の・ね・が・ん・ば・れ！", "9", "10", "431", "11", "608", "m 028.mp3", "所以说请加油吧");
     initialSongMuse("pure", "LLed1BK.jpg", "きっと青春が聞こえる", "10", "10", "491", "11", "633", "m 020.mp3");
     initialSongMuse("smile", "", "くるりんMIRACLE", "9", "9", "504", "11", "790", "m 092.mp3");
     initialSongMuse("smile", "", "これからのSomeday", "9", "10", "487", "11", "678", "m 024.mp3");
@@ -192,7 +192,7 @@ function initSongPool() {
     initialSongMuse("smile", "LLMFV2.jpg", "Mermaid festa vol.2 ~Passionate~", "11", "", "584", "12", "803", "m 016.mp3", "", true);
     initialSongMuse("cool", "Soldier game cover.jpg", "soldier game", "11", "", "563", "12", "696", "m 019.mp3", "", true);
     initialSongMuse("pure", "", "なわとび", "9", "", "363", "11", "442", "m 047.mp3", "", true);
-    initialSongMuse("smile", "にこぷり♡女子道", "にこぷり♡女子道", "11", "", "650", "12", "1061", "m 050.mp3", "", true);
+    initialSongMuse("smile", "", "にこぷり♡女子道", "11", "", "650", "12", "1061", "m 050.mp3", "", true);
     initialSongMuse("pure", "LLOtomeShikiCover.jpg", "乙女式れんあい塾", "11", "", "553", "12", "809", "m 017.mp3", "", true);
     initialSongMuse("pure", "Jacket lovelive kokuhaku.jpg", "告白日和、です！", "11", "", "579", "12", "823", "m 018.mp3", "", true);
     initialSongMuse("smile", "", "夢なき夢は夢じゃない", "11", "", "612", "12", "873", "m 044.mp3", "", true);
