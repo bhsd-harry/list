@@ -20,7 +20,7 @@ function initialDisabling(){
 	    break;
 	case "2":
 	    disabling("txtLow","txtHigh","btnBack1","btnBack2","ddlRound","btnNextRound","ckIfMaster","ddlComment");
-	    $("ckIfMaster").checked=false;
+	    enabling("ckIfMaster");
 	    code=code.concat("mf|diff=easy,normal,hard,expert");
 	    break;
 	case "1":
