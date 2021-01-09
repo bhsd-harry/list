@@ -205,7 +205,7 @@ function initSongPool() {
     initialSongAqours("cool", "", "Believe again", "9", "", "464", "12", "820", "M 208.ogg");
     initialSongAqours("cool", "Braveheart Coaster.jpg", "Braveheart Coaster", "9", "9", "466", "12", "826", "M 220.mp3");
     initialSongAqours("pure", "", "Brightest Melody", "10", "10", "526", "12", "845", "M 207.ogg");
-    initialSongAqours("pure", "", "CHANGELESS", "9", "", "364", "", "", "M 251.mp3");
+    initialSongAqours("pure", "", "CHANGELESS", "9", "", "364", "10", "510", "M 251.mp3");
     initialSongAqours("smile", "", "CRASH MIND", "9", "", "420", "11", "616", "m 186.mp3");
     initialSongAqours("pure", "", "Dance with Minotaurus", "10", "10", "515", "12", "787", "m 249.ogg");
     initialSongAqours("cool", "", "Daydream Warrior", "9", "10", "464", "12", "716", "m 143.mp3");
