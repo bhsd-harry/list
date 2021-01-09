@@ -197,12 +197,13 @@ function initSongPool() {
     initialSongMuse("pure", "Jacket lovelive kokuhaku.jpg", "告白日和、です！", "11", "", "579", "12", "823", "m 018.mp3", "", true);
     initialSongMuse("smile", "", "夢なき夢は夢じゃない", "11", "", "612", "12", "873", "m 044.mp3", "", true);
     initialSongMuse("pure", "", "硝子の花園", "11", "", "609", "12", "993", "m 051.mp3", "", true);
-    initialSongAqours("pure", "Amazing Travel DNA.jpg", "Amazing Travel DNA", "9", "10", "443", "", "", "M 221.mp3");
+    initialSongMuse("cool", "A song for You! You? You!! cover preview.jpg", "なってしまった！", "9", "9", "459", "11", "706", "", "");
+    initialSongAqours("pure", "Amazing Travel DNA.jpg", "Amazing Travel DNA", "9", "10", "443", "11", "653", "M 221.mp3");
     initialSongAqours("smile", "", "Aqours☆HEROES", "10", "10", "515", "11", "686", "m 096.mp3");
     initialSongAqours("pure", "Cd22a", "Awaken the power", "10", "10", "522", "12", "748", "m 170.mp3");
     initialSongAqours("pure", "", "Beginner's Sailing", "9", "10", "551", "12", "961", "m 176.mp3");
     initialSongAqours("cool", "", "Believe again", "9", "", "464", "12", "820", "M 208.ogg");
-    initialSongAqours("cool", "Braveheart Coaster.jpg", "Braveheart Coaster", "9", "9", "466", "", "", "M 220.mp3");
+    initialSongAqours("cool", "Braveheart Coaster.jpg", "Braveheart Coaster", "9", "9", "466", "12", "826", "M 220.mp3");
     initialSongAqours("pure", "", "Brightest Melody", "10", "10", "526", "12", "845", "M 207.ogg");
     initialSongAqours("pure", "", "CHANGELESS", "9", "", "364", "", "", "M 251.mp3");
     initialSongAqours("smile", "", "CRASH MIND", "9", "", "420", "11", "616", "m 186.mp3");
@@ -221,7 +222,7 @@ function initSongPool() {
     initialSongAqours("pure", "", "i-n-g, I TRY!!", "10", "", "493", "", "", "M 217.mp3");
     initialSongAqours("cool", "", "in this unstable world", "9", "", "392", "11", "497", "m 175.mp3");
     initialSongAqours("cool", "", "INNOCENT BIRD", "9", "9", "439", "11", "666", "m 164.mp3");
-    initialSongAqours("cool", "Jump up HIGH!!.jpg", "Jump up HIGH!!", "9", "", "341", "", "", "M 213.ogg");
+    initialSongAqours("cool", "Jump up HIGH!!.jpg", "Jump up HIGH!!", "9", "", "341", "11", "642", "M 213.ogg");
     initialSongAqours("pure", "Club cd cover.jpg", "Landing action Yeah!!", "10", "10", "537", "12", "757", "m 153.mp3");
     initialSongAqours("cool", "LonelyTuning", "LONELY TUNING", "9", "9", "371", "12", "630", "m 161.ogg");
     initialSongAqours("cool", "", "Love Pulsar", "9", "", "409", "11", "676", "M 250.mp3");
@@ -229,7 +230,7 @@ function initSongPool() {
     initialSongAqours("smile", "", "MIRACLE WAVE", "10", "10", "455", "12", "801", "m 169.mp3");
     initialSongAqours("smile", "", "MIRAI TICKET", "10", "10", "536", "12", "792", "m 128.mp3");
     initialSongAqours("cool", "MY舞☆TONIGHT_1", "MY舞☆TONIGHT", "10", "11", "464", "12", "696", "m 168.mp3");
-    initialSongAqours("smile", "New Romantic Sailors.jpg", "New Romantic Sailors", "10", "", "529", "", "", "M 219.mp3");
+    initialSongAqours("smile", "New Romantic Sailors.jpg", "New Romantic Sailors", "10", "", "529", "12", "765", "M 219.mp3");
     initialSongAqours("smile", "", "New winding road", "9", "9", "387", "11", "538", "m 178.mp3");
     initialSongAqours("cool", "", "Next SPARKLING!!", "9", "9", "482", "11", "644", "M 204.ogg");
     initialSongAqours("cool", "", "No.10", "9", "", "318", "10", "475", "m 190.ogg");
@@ -256,7 +257,7 @@ function initSongPool() {
     initialSongAqours("cool", "RRe", "ときめき分類学", "9", "9", "371", "11", "589", "m 115.mp3");
     initialSongAqours("pure", "", "キセキヒカル", "9", "", "400", "11", "696", "m 179.mp3");
     initialSongAqours("cool", "Cd16a", "コワレヤスキ", "10", "10", "529", "12", "780", "m 154.mp3");
-    initialSongAqours("pure", "", "サクラバイバイ", "10", "10", "550", "", "", "M_212.ogg");
+    initialSongAqours("pure", "", "サクラバイバイ", "10", "10", "550", "12", "999", "M_212.ogg");
     initialSongAqours("smile", "", "サンシャインぴっかぴか音頭", "9", "9", "512", "12", "728", "m 149.mp3");
     initialSongAqours("pure", "Jingle-Bell-ga-tomaranai.jpg", "ジングルベルがとまらない", "9", "9", "523", "12", "762", "m 132.mp3");
     initialSongAqours("cool", "スリリング・ワンウェイ", "スリリング・ワンウェイ", "10", "11", "592", "12", "840", "m 145.mp3", "Thrilling One-way");
@@ -282,13 +283,13 @@ function initSongPool() {
     initialSongAqours("pure", "", "待ってて愛のうた", "9", "9", "466", "11", "603", "m 108.mp3");
     initialSongAqours("cool", "恋になりたい AQUARIUM.jpg", "恋になりたいAQUARIUM", "9", "10", "544", "12", "889", "m 107.mp3");
     initialSongAqours("cool", "", "想いよひとつになれ", "9", "10", "494", "12", "717", "m 127.mp3");
-    initialSongAqours("smile", "Mitaiken horizon.jpg", "未体験HORIZON", "9", "", "450", "", "", "M 215.ogg");
+    initialSongAqours("smile", "Mitaiken horizon.jpg", "未体験HORIZON", "9", "", "450", "12", "691", "M 215.ogg");
     initialSongAqours("pure", "Cd19a", "未来の僕らは知ってるよ", "10", "11", "518", "12", "692", "m 166.mp3");
     initialSongAqours("pure", "", "未熟DREAMER", "9", "9", "318", "10", "445", "m 124.mp3");
     initialSongAqours("smile", "決めたよHand In Hand", "決めたよHand in Hand", "10", "11", "569", "12", "805", "m 118.mp3");
     initialSongAqours("pure", "", "海岸通りで待ってるよ", "9", "9", "496", "11", "668", "m 163.mp3");
     initialSongAqours("pure", "", "空も心も晴れるから", "9", "9", "343", "10", "444", "m 129.mp3");
-    initialSongAqours("smile", "Kuuchuu Renai Ron", "空中恋愛論", "9", "", "329", "", "", "M 252.mp3");
+    initialSongAqours("smile", "Kuuchuu Renai Ron", "空中恋愛論", "9", "", "329", "11", "576", "M 252.mp3");
     initialSongAqours("cool", "", "聖なる日の祈り", "9", "9", "408", "11", "530", "m 134.mp3");
     initialSongAqours("smile", "Cd14a", "近未来ハッピーエンド", "9", "10", "576", "12", "900", "m 152.mp3");
     initialSongAqours("smile", "", "逃走迷走メビウスループ", "9", "", "497", "11", "695", "M 205.ogg");
