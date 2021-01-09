@@ -301,4 +301,5 @@ function initSongPool() {
     initialSongAqours("smile", "Shadowverse_OST_vol_2", "大いなる決闘", "9", "", "550", "", "", "M 218.ogg");
     initialSongAqours("smile", "", "コドク・テレポート", "9", "", "333", "", "", "M 254.ogg");
     initialSongAqours("cool", "", "メイズセカイ", "10", "", "434", "", "", "M 255.ogg");
+    initialSongAqours("smile", "", "シャゼリア☆キッス☆ダダンダーン", "10", "", "564", "12", "791", "");
 }
