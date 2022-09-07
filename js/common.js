@@ -7,7 +7,7 @@ function $$(id){
 }
 function enabling(){
     for(let i=0;i<arguments.length;i++){
-	$(arguments[i]).disabled=false;
+        $(arguments[i]).disabled=false;
     }
 }
 function disabling(){
